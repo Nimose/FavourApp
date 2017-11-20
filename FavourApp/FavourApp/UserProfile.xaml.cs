@@ -30,11 +30,11 @@ namespace FavourApp
         protected override async void OnAppearing()
         {
             var content = await _client.GetStringAsync(Url + "user/" + fbid);
-            var user = JsonConvert.DeserializeObject<User.Users>(content);
-            UserFname.Text = user.fname;
-            UserLname.Text = user.fname;
-            UserImage.Source = user.imgurl;
-            UserDescription.Text = user.description;
+            var user = JsonConvert.DeserializeObject<User>(content);
+            UserFname.Text = user.Fname;
+            UserLname.Text = user.Fname;
+            UserImage.Source = user.Imgurl;
+            UserDescription.Text = user.Description;
         }
 
         async void Message_Clicked(object sender, EventArgs e)

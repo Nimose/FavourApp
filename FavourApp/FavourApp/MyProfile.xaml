@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FavourApp" 
              xmlns:viewModels="clr-namespace:FavourApp.ViewModels; assembly:FavorApp"
-             x:Class="FavourApp.MyProfile">
+             x:Class="FavourApp.MyProfile"
+             Title="Min Profil">
 
     <ContentPage.BindingContext>
         <viewModels:FacebookViewModel/>
@@ -11,36 +12,29 @@
     <StackLayout x:Name="MainStackLayout">
         <StackLayout>
             <StackLayout Orientation = "Vertical" >
-                <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="200" WidthRequest="200" VerticalOptions="Start"/>
-                <Label x:Name="FacebookId" Text="{Binding FacebookProfile.Id}"/>
-                <Label x:Name="Fname" Text="{Binding FacebookProfile.FirstName}"/>
-                <Label x:Name="Lname" Text="{Binding FacebookProfile.LastName}"/>
-
-                <Entry x:Name="Zip" Placeholder="ZipCode"/>
-                <Entry x:Name="Description" Placeholder="Description"/>
-                <Entry x:Name="Range" Placeholder="Range"/>
-
-                <ListView x:Name="ListServices">
-                    <ListView.ItemTemplate >
-                        <DataTemplate>
-                            <TextCell Text="{Binding category}" Detail="{Binding price}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Picker x:Name="PickerService" Title="Vælg service" ItemDisplayBinding="{Binding name}"/>
-                    <Entry x:Name="PriceService" Placeholder="Timepris"/>
-                    <Button x:Name="AddService" 
-                            Clicked="AddService_Clicked"
-                            Text="Add" 
-                            BackgroundColor="Transparent"/>
-                </StackLayout>
-
-
-
-                <Button x:Name="UpdateUser" Clicked="UpdateUser_Clicked" Text="Update"/>
+                <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
+                <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
+                <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
+                <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
+                <Label x:Name="ZipLabel" Text="{Binding User.zip}"/>
+                <Label x:Name="DescriptionLabel" Text="{Binding User.description}"/>
+                <Label x:Name="RangeLabel" Text="{Binding User.range}"/>
             </StackLayout>
+        </StackLayout>
+
+        <!--End buttons Stacklayout-->
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#2196F3">
+            <Button x:Name="UpdateUser" 
+                    Clicked="UpdateUser_Clicked" 
+                    Text="Opdater profil" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent" 
+                    HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </StackLayout>
 

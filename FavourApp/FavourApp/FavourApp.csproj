@@ -46,12 +46,16 @@
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FacebookProfile.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MyProfile.xaml.cs">
       <DependentUpon>MyProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FacebookServices.cs" />
+    <Compile Include="UpdateMyProfile.xaml.cs">
+      <DependentUpon>UpdateMyProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserProfile.xaml.cs">
       <DependentUpon>UserProfile.xaml</DependentUpon>
     </Compile>
@@ -107,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Message.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateMyProfile.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

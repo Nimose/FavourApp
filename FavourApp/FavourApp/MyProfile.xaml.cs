@@ -16,9 +16,8 @@ namespace FavourApp
 	{
         private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";    
         HttpClient _client = new HttpClient();    
-        ObservableCollection<Category.Categories> _categories;
-        ObservableCollection<User.Service> listItems = new ObservableCollection<User.Service>();
-        //ClientId ligger på docs
+        ObservableCollection<Category> _categories;
+        ObservableCollection<Service> listItems = new ObservableCollection<Service>();
         private string ClientId = "930931753728262";
 
         public MyProfile()
@@ -46,11 +45,9 @@ namespace FavourApp
         protected override async void OnAppearing()
         {
             var content = await _client.GetStringAsync(Url + "categories/");
-            var category = JsonConvert.DeserializeObject<List<Category.Categories>>(content);
-            _categories = new ObservableCollection<Category.Categories>(category);
-            ListServices.ItemsSource = listItems;
-
-            PickerService.ItemsSource = _categories;
+            var category = JsonConvert.DeserializeObject<List<Category>>(content);
+            var user = await _client.GetStringAsync(Url + "user/" + FacebookIdLabel.Text);
+            _categories = new ObservableCollection<Category>(category);          
             base.OnAppearing();
         }
 
@@ -83,35 +80,11 @@ namespace FavourApp
             return string.Empty;
         }
 
-        private void AddService_Clicked(object sender, System.EventArgs e)
-        {
-            User.Service service = new User.Service();
-            int price = int.Parse(PriceService.Text);
-            var selectedValue = PickerService.Items[PickerService.SelectedIndex];
-
-            service.category =  selectedValue;
-            service.price = price;
-            listItems.Add(service);
-
-        }
+      
 
         async void UpdateUser_Clicked(object sender, System.EventArgs e)
-        {
-            var user = new User.Users {
-                description = Description.Text,
-                fname = Fname.Text,
-                lname = Lname.Text,
-                facebookid = FacebookId.Text,
-                imgurl = ImageUrl.Source.ToString(),
-                range = int.Parse(Range.Text),
-                zipcode = Zip.Text,
-                services = listItems.ToList().ToArray()
-            };
-
-            var content = JsonConvert.SerializeObject(user);
-         
-            await _client.PostAsync(Url + "user", new StringContent(content, Encoding.UTF8, "application/json"));
-
+        {            
+            await Navigation.PushModalAsync(new UpdateMyProfile());            
         }
     }
 }

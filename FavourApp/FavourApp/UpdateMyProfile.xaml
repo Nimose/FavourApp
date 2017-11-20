@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FavourApp.UpdateMyProfile">
+
+    <StackLayout>
+        <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
+        <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
+        <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
+        <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
+        <Entry x:Name="Zip" Placeholder="ZipCode"/>
+        <Entry x:Name="Description" Placeholder="Description"/>
+        <Entry x:Name="Range" Placeholder="Range"/>
+
+        
+        <!--Servicelist-->
+        <ListView x:Name="ListServices">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <TextCell Text="{Binding category}" Detail="{Binding price}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        
+        <!--Services to list--> 
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Picker x:Name="PickerService" Title="Vælg service" ItemDisplayBinding="{Binding name}"/>
+            <Entry x:Name="PriceService" Placeholder="Timepris"/>
+            <Button x:Name="AddService"  Clicked="AddService_Clicked" Text="Add"  BackgroundColor="Transparent"/>
+        </StackLayout>
+
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#2196F3">
+            <Button x:Name="Update"
+                    Clicked="Update_Clicked" 
+                    Text="Opdater"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Medium"                    
+                    BackgroundColor="Transparent"/>
+            <Button x:Name="Cancel" 
+                    Clicked="Cancel_Clicked" 
+                    Text="Annuller"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

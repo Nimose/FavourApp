@@ -14,14 +14,12 @@ using System.Diagnostics;
 namespace FavourApp
 {
 
-
-
     public partial class MainPage : ContentPage
     {
         private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";
 
         HttpClient _client = new HttpClient();
-        ObservableCollection<User.Users> _users;
+        ObservableCollection<User> _users;
 
 
         public MainPage()
@@ -33,17 +31,17 @@ namespace FavourApp
             try
             {
                 var content = await _client.GetStringAsync(Url + "user/");
-                var user = JsonConvert.DeserializeObject<List<User.Users>>(content);
-                _users = new ObservableCollection<User.Users>(user);
+                var user = JsonConvert.DeserializeObject<List<User>>(content);
+                _users = new ObservableCollection<User>(user);
 
                 List<UserTest> list = new List<UserTest>();
                 foreach (var u in _users)
                 {
                     //Check if users provides any services 
-                    if (u.services.Length.Equals(0)) { }
+                    if (u.Services.Length.Equals(0)) { }
                     else
                     {
-                        list.Add(new UserTest { facebookid = Int32.Parse(u.facebookid), fname = u.fname, lname = u.lname });
+                        list.Add(new UserTest { Facebookid = Int32.Parse(u.Facebookid), Fname = u.Fname, Lname = u.Lname });
                     }
                 }
                 postsListView.ItemsSource = list;
@@ -113,9 +111,9 @@ namespace FavourApp
 
 public class UserTest
 {
-    public int facebookid { get; set; }
-    public string fname { get; set; }
-    public string lname { get; set; }
+    public int Facebookid { get; set; }
+    public string Fname { get; set; }
+    public string Lname { get; set; }
 
 }
 }
