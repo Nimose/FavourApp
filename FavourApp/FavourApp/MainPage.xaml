@@ -43,10 +43,19 @@
 
         <!--List profiles Stacklayout-->
         <StackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="postsListView">
+            <ListView x:Name="postsListView" HasUnevenRows="True"> 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding users}" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <!--<Image Source="{Binding imgurl}"/>-->
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding fname}"/>
+                                    <!--<Label Text="{Binding description}"/>-->
+                                    <Button x:Name="ViewProfile" Text="Se profil" Clicked="ViewProfile_Clicked" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

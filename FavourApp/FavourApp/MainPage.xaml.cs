@@ -14,27 +14,14 @@ using System.Diagnostics;
 namespace FavourApp
 {
 
-    public class Post
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Body { get; set; }
-    }
-    public class ProfileTest
-    {
-        public int Id { get; set; }
-        public string Description { get; set; }
-    }
+
 
     public partial class MainPage : ContentPage
     {
         private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";
-        //private const string Url = "https://jsonplaceholder.typicode.com/posts/";
 
         HttpClient _client = new HttpClient();
-        ObservableCollection<User.Rootobject> _users;
-        ObservableCollection<Post> _posts;
-        ObservableCollection<Category.Rootobject> _categories;
+        ObservableCollection<User.Users> _users;
 
 
         public MainPage()
@@ -43,64 +30,93 @@ namespace FavourApp
         }
         protected override async void OnAppearing()
         {
-            var content = await _client.GetStringAsync(Url + "user");
-            var user = JsonConvert.DeserializeObject<List<User.Rootobject>>(content);
-            _users = new ObservableCollection<User.Rootobject>(user);
-            List<ProfileTest> list = new List<ProfileTest>();
+            try
+            {
+                var content = await _client.GetStringAsync(Url + "user/");
+                var user = JsonConvert.DeserializeObject<List<User.Users>>(content);
+                _users = new ObservableCollection<User.Users>(user);
 
-            postsListView.ItemsSource = _users;
-            base.OnAppearing();
-        }
+                List<UserTest> list = new List<UserTest>();
+                foreach (var u in _users)
+                {
+                    //Check if users provides any services 
+                    if (u.services.Length.Equals(0)) { }
+                    else
+                    {
+                        list.Add(new UserTest { facebookid = Int32.Parse(u.facebookid), fname = u.fname, lname = u.lname });
+                    }
+                }
+                postsListView.ItemsSource = list;
+                base.OnAppearing();
+            }
+            catch (Exception e)
+            {
 
-        private void Map_Clicked(object sender, EventArgs e)
-        {
+                Debug.WriteLine(e);
+            }
+               
 
-        }
-
-        private void Search_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Home_Clicked(object sender, EventArgs e)
-        {
-        }
-
-        private void Following_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Inbox_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        async void Profile_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Profile());
-        }
-        private void Children_Clicked(object sender, EventArgs e)
-        {
-
-        }
-        private void Garden_Clicked(object sender, EventArgs e)
-        {
-
-        }
-        private void Shopping_Clicked(object sender, EventArgs e)
-        {
-
-        }
-        private void Travel_Clicked(object sender, EventArgs e)
-        {
-
-        }
-        private void UserList_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-
-        }
     }
 
+    private void Map_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Search_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Home_Clicked(object sender, EventArgs e)
+    {
+    }
+
+    private void Following_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Inbox_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    async void Profile_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MyProfile());
+    }
+    private void Children_Clicked(object sender, EventArgs e)
+    {
+
+    }
+    private void Garden_Clicked(object sender, EventArgs e)
+    {
+
+    }
+    private void Shopping_Clicked(object sender, EventArgs e)
+    {
+
+    }
+    private void Travel_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+
+    async void ViewProfile_Clicked(object sender, EventArgs e)
+    {
+        var facebookid = 20323023;
+        await Navigation.PushAsync(new UserProfile(facebookid));
+    }
+}
+
+public class UserTest
+{
+    public int facebookid { get; set; }
+    public string fname { get; set; }
+    public string lname { get; set; }
+
+}
 }
 

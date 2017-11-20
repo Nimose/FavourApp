@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FavourApp.UserProfile">
+    <StackLayout>
+        <!--Profile StackLayout-->
+        <StackLayout Orientation="Vertical" >
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+        <Image x:Name="UserImage"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label x:Name="UserFname" Text="" FontAttributes="Bold" FontSize="Medium"/>
+            <Label x:Name="UserLname" Text="" FontAttributes="Bold" FontSize="Medium"/>
+        </StackLayout>
+        <StackLayout Orientation="Vertical">
+        <Label x:Name="UserDescription" Text=""/>
+        </StackLayout>
+        </StackLayout>
+
+        <!--End buttons Stacklayout-->
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     BackgroundColor="#2196F3">
+            
+            <Button x:Name="Message"
+                    Clicked="Message_Clicked"
+                    Image="inbox.png" 
+                    Text="Skriv til bruger"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

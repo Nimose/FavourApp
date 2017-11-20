@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FavourApp" 
+             xmlns:viewModels="clr-namespace:FavourApp.ViewModels; assembly:FavorApp"
+             x:Class="FavourApp.MyProfile">
+
+    <ContentPage.BindingContext>
+        <viewModels:FacebookViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout x:Name="MainStackLayout">
+        <StackLayout>
+            <StackLayout Orientation = "Vertical" >
+                <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="200" WidthRequest="200" VerticalOptions="Start"/>
+                <Label x:Name="FacebookId" Text="{Binding FacebookProfile.Id}"/>
+                <Label x:Name="Fname" Text="{Binding FacebookProfile.FirstName}"/>
+                <Label x:Name="Lname" Text="{Binding FacebookProfile.LastName}"/>
+
+                <Entry x:Name="Zip" Placeholder="ZipCode"/>
+                <Entry x:Name="Description" Placeholder="Description"/>
+                <Entry x:Name="Range" Placeholder="Range"/>
+
+                <ListView x:Name="ListServices">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <TextCell Text="{Binding category}" Detail="{Binding price}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Picker x:Name="PickerService" Title="Vælg service" ItemDisplayBinding="{Binding name}"/>
+                    <Entry x:Name="PriceService" Placeholder="Timepris"/>
+                    <Button x:Name="AddService" 
+                            Clicked="AddService_Clicked"
+                            Text="Add" 
+                            BackgroundColor="Transparent"/>
+                </StackLayout>
+
+
+
+                <Button x:Name="UpdateUser" Clicked="UpdateUser_Clicked" Text="Update"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

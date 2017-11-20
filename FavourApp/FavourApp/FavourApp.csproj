@@ -41,14 +41,20 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Message.xaml.cs">
+      <DependentUpon>Message.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FacebookProfile.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Profile.xaml.cs">
-      <DependentUpon>Profile.xaml</DependentUpon>
+    <Compile Include="MyProfile.xaml.cs">
+      <DependentUpon>MyProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FacebookServices.cs" />
+    <Compile Include="UserProfile.xaml.cs">
+      <DependentUpon>UserProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\FacebookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +94,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Profile.xaml">
+    <EmbeddedResource Include="MyProfile.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserProfile.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Message.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
