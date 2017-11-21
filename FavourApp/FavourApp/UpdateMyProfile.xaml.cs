@@ -1,4 +1,6 @@
 ﻿using FavourApp.Models;
+using FavourApp.Services;
+using FavourApp.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,33 +15,31 @@ using Xamarin.Forms.Xaml;
 
 namespace FavourApp
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class UpdateMyProfile : ContentPage
-	{
-        private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";
-        HttpClient _client = new HttpClient();
-        ObservableCollection<Category> _categories;
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class UpdateMyProfile : ContentPage
+    {
+       
         ObservableCollection<Service> listItems = new ObservableCollection<Service>();
-        private string ApiKey = "?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTExMTg0MzEzfQ.weCro9I2mFufR2zthIJK-27BuJuV4bLKzSWpK3LrMjQ";
 
-        public UpdateMyProfile()
-		{
-			InitializeComponent ();
-		}
+        public UpdateMyProfile(string fname, string lname, string id)
+        {
+            BindingContext = new CategoriesViewModel();
+
+            FacebookIdLabel.Text = id;
+            FnameLabel.Text = fname;
+            LnameLabel.Text = lname;
+            InitializeComponent();
+        }
         protected override async void OnAppearing()
         {
-            var content = await _client.GetStringAsync(Url + "categories/");
-            var category = JsonConvert.DeserializeObject<List<Category>>(content);
-            var user = await _client.GetStringAsync(Url + "user/" + FacebookIdLabel.Text);
-            _categories = new ObservableCollection<Category>(category);
-            ListServices.ItemsSource = listItems;
-
-            PickerService.ItemsSource = _categories;
+            var favorService = new FavorService();
+            var user = await favorService.GetUserAsync(FacebookIdLabel.Text);
             base.OnAppearing();
         }
 
         private async void Update_Clicked(object sender, EventArgs e)
         {
+            var favorService = new FavorService();
             var user = new User
             {
                 Description = Description.Text,
@@ -51,8 +51,7 @@ namespace FavourApp
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()
             };
-            var content = JsonConvert.SerializeObject(user);
-            await _client.PostAsync(Url + "user" + ApiKey, new StringContent(content, Encoding.UTF8, "application/json"));
+            favorService.CreateProfileAsync(user);
             await Navigation.PopModalAsync();
         }
 

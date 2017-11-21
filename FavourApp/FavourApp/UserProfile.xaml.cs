@@ -1,25 +1,14 @@
-﻿using FavourApp.Models;
-using Newtonsoft.Json;
+﻿using FavourApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FavourApp
 {
-    
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class UserProfile : ContentPage
 	{
         public string fbid = "";
-        private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";
-        HttpClient _client = new HttpClient();
-
         public UserProfile (string facebookId)
 		{
             this.fbid = facebookId;
@@ -28,10 +17,11 @@ namespace FavourApp
 
         protected override async void OnAppearing()
         {
-            var content = await _client.GetStringAsync(Url + "user/" + fbid);
-            var user = JsonConvert.DeserializeObject<User>(content);
+            var favorService = new FavorService();
+            var user = await favorService.GetUserAsync(fbid);
+
             UserFname.Text = user.Fname;
-            UserLname.Text = user.Fname;
+            UserLname.Text = user.Lname;
             UserImage.Source = user.Imgurl;
             ServiceList.ItemsSource = user.Services;
             UserDescription.Text = user.Description;

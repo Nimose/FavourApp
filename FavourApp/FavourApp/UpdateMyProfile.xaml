@@ -4,10 +4,10 @@
              x:Class="FavourApp.UpdateMyProfile">
 
     <StackLayout>
-        <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
-        <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
-        <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
-        <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
+        <Image x:Name="ImageUrl" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
+        <Label x:Name="FacebookIdLabel" Text=""/>
+        <Label x:Name="FnameLabel" Text=""/>
+        <Label x:Name="LnameLabel" Text=""/>
         <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric"/>
         <Entry x:Name="Description" Placeholder="Description"/>
         <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
@@ -23,7 +23,7 @@
  
         <!--Services to list-->
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Picker x:Name="PickerService" Title="Vælg service" />
+            <Picker x:Name="PickerService" Title="Vælg service"  ItemsSource="{Binding Categories}"/>
             <Entry x:Name="PriceService" Placeholder="Timepris" Keyboard="Numeric"/>
             <Button x:Name="AddService"  Clicked="AddService_Clicked" Text="Add"  BackgroundColor="Transparent"/>
         </StackLayout>

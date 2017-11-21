@@ -15,7 +15,6 @@
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40">
                     <!--color on icons: rgba 0,0,0,25-->
                     <Button x:Name="Children"
-                        Clicked="Children_Clicked"
                         Image="children.png"
                         BackgroundColor="Transparent"
                             BorderColor="White"
@@ -23,17 +22,14 @@
                             BorderWidth="0"/>
 
                     <Button x:Name="Garden"
-                        Clicked="Garden_Clicked"
                         Image="garden.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Shopping"
-                        Clicked="Shopping_Clicked"
                         Image="shopping.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Travel"
-                            Clicked="Travel_Clicked"
                             Image="travel.png"
                             BackgroundColor="Transparent"/>
                 </StackLayout>
@@ -43,16 +39,18 @@
 
         <!--List profiles Stacklayout-->
         <StackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="ProfileList" HasUnevenRows="True" ItemTapped="ProfileList_ItemTapped" > 
+            <ListView x:Name="ProfileList" 
+                      HasUnevenRows="True" 
+                      ItemTapped="ProfileList_ItemTapped" 
+                      ItemsSource="{Binding ProfilesWithServices}" > 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5">
-                                <Image Source="{Binding ImgUrl}" WidthRequest="150"/>
+                                <Image Source="{Binding Imgurl}" WidthRequest="150"/>
                                 <StackLayout HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
-                                    <!--<Button x:Name="ViewProfile" Text="Se profil" Clicked="ViewProfile_Clicked"  />-->
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -66,15 +64,12 @@
                      VerticalOptions="EndAndExpand"
                      BackgroundColor="#2196F3">
             <Button x:Name="Home"
-                    Clicked="Home_Clicked"
                     Image="home.png"
                     BackgroundColor="Transparent"/>
             <Button x:Name="Following"
-                    Clicked="Following_Clicked"
                     Image="following.png"
                     BackgroundColor="Transparent"/>
             <Button x:Name="Inbox"
-                    Clicked="Inbox_Clicked"
                     Image="inbox.png" 
                     BackgroundColor="Transparent"/>
             <Button x:Name="Profile"

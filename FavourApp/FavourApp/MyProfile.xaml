@@ -16,9 +16,9 @@
                 <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
                 <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
                 <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
-                <Label x:Name="ZipLabel" Text="{Binding User.zip}"/>
-                <Label x:Name="DescriptionLabel" Text="{Binding User.description}"/>
-                <Label x:Name="RangeLabel" Text="{Binding User.range}"/>
+                <Label x:Name="ZipLabel" Text="{Binding User.Zip}"/>
+                <Label x:Name="DescriptionLabel" Text="{Binding User.Description}"/>
+                <Label x:Name="RangeLabel" Text="{Binding User.Range}"/>
             </StackLayout>
         </StackLayout>
 

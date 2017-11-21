@@ -7,7 +7,6 @@ namespace FavourApp.Services
 {
     public class FacebookServices
     {
-
         public async Task<FacebookProfile> GetFacebookProfileAsync(string accessToken)
         {
             var requestUrl =
