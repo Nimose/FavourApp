@@ -33,6 +33,7 @@ namespace FavourApp
             var user = await _client.GetStringAsync(Url + "user/" + FacebookIdLabel.Text);
             _categories = new ObservableCollection<Category>(category);
             ListServices.ItemsSource = listItems;
+
             PickerService.ItemsSource = _categories;
             base.OnAppearing();
         }
@@ -51,7 +52,7 @@ namespace FavourApp
                 Services = listItems.ToList().ToArray()
             };
             var content = JsonConvert.SerializeObject(user);
-            await _client.PostAsync(Url + "user/" + ApiKey, new StringContent(content, Encoding.UTF8, "application/json"));
+            await _client.PostAsync(Url + "user" + ApiKey, new StringContent(content, Encoding.UTF8, "application/json"));
             await Navigation.PopModalAsync();
         }
 

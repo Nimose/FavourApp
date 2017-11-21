@@ -78,9 +78,7 @@ namespace FavourApp
             }
 
             return string.Empty;
-        }
-
-      
+        } 
 
         async void UpdateUser_Clicked(object sender, System.EventArgs e)
         {            

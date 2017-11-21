@@ -8,11 +8,10 @@
         <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
         <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
         <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
-        <Entry x:Name="Zip" Placeholder="ZipCode"/>
+        <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric"/>
         <Entry x:Name="Description" Placeholder="Description"/>
-        <Entry x:Name="Range" Placeholder="Range"/>
+        <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
 
-        
         <!--Servicelist-->
         <ListView x:Name="ListServices">
             <ListView.ItemTemplate >
@@ -21,15 +20,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        
-        <!--Services to list--> 
+ 
+        <!--Services to list-->
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Picker x:Name="PickerService" Title="Vælg service" ItemDisplayBinding="{Binding name}"/>
-            <Entry x:Name="PriceService" Placeholder="Timepris"/>
+            <Picker x:Name="PickerService" Title="Vælg service" />
+            <Entry x:Name="PriceService" Placeholder="Timepris" Keyboard="Numeric"/>
             <Button x:Name="AddService"  Clicked="AddService_Clicked" Text="Add"  BackgroundColor="Transparent"/>
         </StackLayout>
-
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"

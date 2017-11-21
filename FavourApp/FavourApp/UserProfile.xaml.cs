@@ -16,15 +16,14 @@ namespace FavourApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class UserProfile : ContentPage
 	{
-        public int fbid = 0;
+        public string fbid = "";
         private const string Url = "http://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com:3000/";
         HttpClient _client = new HttpClient();
-        
-        public UserProfile (int facebookid)
-		{
-            this.fbid = facebookid;
-			InitializeComponent ();
 
+        public UserProfile (string facebookId)
+		{
+            this.fbid = facebookId;
+			InitializeComponent ();
         }
 
         protected override async void OnAppearing()
@@ -34,6 +33,7 @@ namespace FavourApp
             UserFname.Text = user.Fname;
             UserLname.Text = user.Fname;
             UserImage.Source = user.Imgurl;
+            ServiceList.ItemsSource = user.Services;
             UserDescription.Text = user.Description;
         }
 

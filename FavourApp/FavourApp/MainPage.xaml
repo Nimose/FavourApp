@@ -43,16 +43,16 @@
 
         <!--List profiles Stacklayout-->
         <StackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="postsListView" HasUnevenRows="True"> 
+            <ListView x:Name="ProfileList" HasUnevenRows="True" ItemTapped="ProfileList_ItemTapped" > 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5">
-                                <!--<Image Source="{Binding imgurl}"/>-->
+                                <Image Source="{Binding ImgUrl}" WidthRequest="150"/>
                                 <StackLayout HorizontalOptions="StartAndExpand">
-                                    <Label Text="{Binding fname}"/>
-                                    <!--<Label Text="{Binding description}"/>-->
-                                    <Button x:Name="ViewProfile" Text="Se profil" Clicked="ViewProfile_Clicked" />
+                                    <Label Text="{Binding Fname}"/>
+                                    <Label Text="{Binding Lname}"/>
+                                    <!--<Button x:Name="ViewProfile" Text="Se profil" Clicked="ViewProfile_Clicked"  />-->
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
