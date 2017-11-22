@@ -54,10 +54,18 @@ namespace FavourApp.Services
 
         public async void CreateProfileAsync(User user)
         {
-            var postUrl = Url + "user/" + ApiKey;
+            var postUrl = Url + "user" + ApiKey;
             HttpClient _client = new HttpClient();
-            var userJson = JsonConvert.SerializeObject(user);
-            await _client.PostAsync(postUrl, new StringContent(userJson, Encoding.UTF8, "application/json"));
+
+            if (CheckProfile(user).Equals(false))
+            {
+                var userJson = JsonConvert.SerializeObject(user);
+                await _client.PostAsync(postUrl, new StringContent(userJson, Encoding.UTF8, "application/json"));
+            }
+            else
+            {
+                UpdateProfileAsync(user);
+            }          
         }
   
         public async void UpdateProfileAsync(User user)
@@ -66,6 +74,18 @@ namespace FavourApp.Services
             HttpClient _client = new HttpClient();
             var userJson = JsonConvert.SerializeObject(user);
             await _client.PutAsync(postUrl, new StringContent(userJson, Encoding.UTF8, "application/json"));
+        }
+
+
+
+        public bool CheckProfile(User user)
+        {
+
+            if (GetUserAsync(user.Facebookid) != null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

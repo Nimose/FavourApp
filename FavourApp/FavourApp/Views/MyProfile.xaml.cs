@@ -1,19 +1,13 @@
 ﻿using FavourApp.Models;
 using FavourApp.ViewModels;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Linq;
-using System.Text;
-using FavourApp.Services;
 
 namespace FavourApp
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MyProfile : ContentPage
+    public partial class MyProfile : ContentPage
 	{
         private const string Url = "https://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com/user";    
         HttpClient _client = new HttpClient();    
@@ -24,7 +18,7 @@ namespace FavourApp
         public MyProfile()
 		{
             InitializeComponent();
-
+          
             var apiRequest =
                 "https://www.facebook.com/dialog/oauth?client_id="
                 + ClientId
@@ -43,7 +37,7 @@ namespace FavourApp
         }
 
         protected override void OnAppearing()
-        {        
+        {
             base.OnAppearing();
         }
 
@@ -64,6 +58,8 @@ namespace FavourApp
         {
             if (url.Contains("access_token") && url.Contains("&expires_in="))
             {
+
+
                 var at = url.Replace("https://www.facebook.com/connect/login_success.html#access_token=", "");                
                 var accessToken = at.Remove(at.IndexOf("&expires_in="));            
                 return accessToken;

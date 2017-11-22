@@ -64,7 +64,8 @@ namespace FavourApp.ViewModels
             }
             return true;
         }
-    }
 
+      
+    }
 }
 

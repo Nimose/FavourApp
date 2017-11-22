@@ -8,11 +8,33 @@
         <Label x:Name="FacebookIdLabel" Text=""/>
         <Label x:Name="FnameLabel" Text=""/>
         <Label x:Name="LnameLabel" Text=""/>
-        
+
         <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric" />
         <Entry x:Name="Description" Placeholder="Description"/>
         <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
 
+        <!--Services to list-->
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            
+            <Picker x:Name="PickerService" 
+                    Title="Vælg service"  
+                    ItemsSource="{Binding Categories}"
+                    ItemDisplayBinding="{Binding Name}"
+                    HorizontalOptions="StartAndExpand"/>
+            
+            <Entry x:Name="PriceService" 
+                   Placeholder="Timepris" 
+                   Keyboard="Numeric" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="AddService"  
+                    Clicked="AddService_Clicked" 
+                    Text="Add"  
+                    BackgroundColor="Transparent" 
+                    HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        
         <!--Servicelist-->
         <ListView x:Name="ListServices">
             <ListView.ItemTemplate >
@@ -21,14 +43,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
- 
-        <!--Services to list-->
-        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-            <Picker x:Name="PickerService" Title="Vælg service"  ItemsSource="{Binding Categories}"
-                            ItemDisplayBinding="{Binding Name}"/>
-            <Entry x:Name="PriceService" Placeholder="Timepris" Keyboard="Numeric"/>
-            <Button x:Name="AddService"  Clicked="AddService_Clicked" Text="Add"  BackgroundColor="Transparent"/>
-        </StackLayout>
+
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"

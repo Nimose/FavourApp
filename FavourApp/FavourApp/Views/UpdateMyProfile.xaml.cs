@@ -12,7 +12,6 @@ namespace FavourApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdateMyProfile : ContentPage
     {
-
         ObservableCollection<Service> listItems = new ObservableCollection<Service>();
         FacebookProfile facebookProfile;
         public UpdateMyProfile(FacebookProfile facebookProfile)
@@ -35,6 +34,7 @@ namespace FavourApp
 
         private async void Update_Clicked(object sender, EventArgs e)
         {
+            var favorService = new FavorService();
             var user = new User
             {
                 Description = Description.Text,
@@ -46,8 +46,7 @@ namespace FavourApp
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()
             };
-
-            (BindingContext as ProfilesViewModel).CreateProfile(user);
+            favorService.CreateProfileAsync(user);
             await Navigation.PopModalAsync();
         }
 

@@ -21,18 +21,9 @@ namespace FavourApp
             InitializeComponent();
         }
         protected override void OnAppearing()
-        {
-            try
-            {
+        {        
                 (BindingContext as ProfilesViewModel).GetProfilesWithServices();
-                base.OnAppearing();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
-           
+                base.OnAppearing();           
         }            
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
