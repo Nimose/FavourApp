@@ -44,12 +44,27 @@ namespace FavourApp.ViewModels
             }
         }
 
-        public  void CreateProfile(User user)
+        public void CreateProfile(User user)
         {
             var favorService = new FavorService();
-            favorService.CreateProfileAsync(user);
+
+            if (CheckProfile(user) == true)
+            {
+                favorService.CreateProfileAsync(user);
+            }
+            favorService.UpdateProfileAsync(user);
         }
 
+        public bool CheckProfile(User user)
+        {
+            var favorService = new FavorService();
+
+            if (favorService.GetUserAsync(user.Facebookid) == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
 }

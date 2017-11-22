@@ -28,9 +28,12 @@ namespace FavourApp.Services
         {
             var requestUrl = Url + "user/";
             HttpClient _client = new HttpClient();
-            var usersJson = await _client.GetStringAsync(requestUrl);
-            var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
-            return users;
+        
+                var usersJson = await _client.GetStringAsync(requestUrl);
+                var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
+                return users;
+
+            
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {
@@ -56,5 +59,15 @@ namespace FavourApp.Services
             var userJson = JsonConvert.SerializeObject(user);
             await _client.PostAsync(postUrl, new StringContent(userJson, Encoding.UTF8, "application/json"));
         }
+  
+        public async void UpdateProfileAsync(User user)
+        {
+            var postUrl = Url + "user/" + ApiKey;
+            HttpClient _client = new HttpClient();
+            var userJson = JsonConvert.SerializeObject(user);
+            await _client.PutAsync(postUrl, new StringContent(userJson, Encoding.UTF8, "application/json"));
+        }
+
     }
+
 }
