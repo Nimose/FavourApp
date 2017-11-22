@@ -47,7 +47,6 @@ namespace FavourApp.ViewModels
         public void CreateProfile(User user)
         {
             var favorService = new FavorService();
-
             if (CheckProfile(user) == true)
             {
                 favorService.CreateProfileAsync(user);

@@ -2,6 +2,7 @@
 using FavourApp.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace FavourApp.ViewModels
 {
@@ -12,11 +13,14 @@ namespace FavourApp.ViewModels
         public async void GetCategories()
         {
             var favorService = new FavorService();
+           
             List<Category> categories = await favorService.GetCategoriesAsync();
             foreach (var category in categories)
             {
                 Categories.Add(category);
             }
         }
+
+      
     }
 }

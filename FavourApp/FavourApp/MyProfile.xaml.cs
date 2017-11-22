@@ -12,12 +12,13 @@ using FavourApp.Services;
 
 namespace FavourApp
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyProfile : ContentPage
 	{
         private const string Url = "https://ec2-52-59-154-95.eu-central-1.compute.amazonaws.com/user";    
         HttpClient _client = new HttpClient();    
         ObservableCollection<Service> listItems = new ObservableCollection<Service>();
+        FacebookProfile facebookProfile;
         private string ClientId = "930931753728262";
 
         public MyProfile()
@@ -53,6 +54,8 @@ namespace FavourApp
             {
                 var vm = BindingContext as FacebookViewModel;
                 await vm.SetFacebookUserProfileAsync(accessToken);
+                this.facebookProfile = vm.FacebookProfile;
+                
                 Content = MainStackLayout;
             }
         }
@@ -70,10 +73,7 @@ namespace FavourApp
 
         async void UpdateUser_Clicked(object sender, System.EventArgs e)
         {
-            string fname = FnameLabel.Text;
-            string lname = LnameLabel.Text;
-            string id = FacebookIdLabel.Text;
-            await Navigation.PushModalAsync(new UpdateMyProfile(fname, lname, id));
+            await Navigation.PushModalAsync(new UpdateMyProfile(facebookProfile));
         }
     }
 }

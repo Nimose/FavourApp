@@ -1,15 +1,9 @@
 ﻿using FavourApp.Models;
 using FavourApp.Services;
 using FavourApp.ViewModels;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,28 +12,29 @@ namespace FavourApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdateMyProfile : ContentPage
     {
-       
-        ObservableCollection<Service> listItems = new ObservableCollection<Service>();
 
-        public UpdateMyProfile(string fname, string lname, string id)
+        ObservableCollection<Service> listItems = new ObservableCollection<Service>();
+        FacebookProfile facebookProfile;
+        public UpdateMyProfile(FacebookProfile facebookProfile)
         {
             BindingContext = new CategoriesViewModel();
-
-            FacebookIdLabel.Text = id;
-            FnameLabel.Text = fname;
-            LnameLabel.Text = lname;
+            this.facebookProfile = facebookProfile;
             InitializeComponent();
         }
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
-            var favorService = new FavorService();
-            var user = await favorService.GetUserAsync(FacebookIdLabel.Text);
+            ImageUrl.Source = facebookProfile.Picture.Data.Url;
+            FacebookIdLabel.Text = facebookProfile.Id;
+            FnameLabel.Text = facebookProfile.FirstName;
+            LnameLabel.Text = facebookProfile.LastName;
+            ListServices.ItemsSource = listItems;
+            (BindingContext as CategoriesViewModel).GetCategories();
+
             base.OnAppearing();
         }
 
         private async void Update_Clicked(object sender, EventArgs e)
         {
-            var favorService = new FavorService();
             var user = new User
             {
                 Description = Description.Text,
@@ -51,20 +46,21 @@ namespace FavourApp
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()
             };
-            favorService.CreateProfileAsync(user);
+
+            (BindingContext as ProfilesViewModel).CreateProfile(user);
             await Navigation.PopModalAsync();
         }
 
         private void AddService_Clicked(object sender, System.EventArgs e)
         {
-            Service service = new Service();
             int price = int.Parse(PriceService.Text);
             var selectedValue = PickerService.Items[PickerService.SelectedIndex];
-
-            service.Category = selectedValue;
-            service.Price = price;
+            Service service = new Service
+            {
+                Category = selectedValue,
+                Price = price
+            };
             listItems.Add(service);
-
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
