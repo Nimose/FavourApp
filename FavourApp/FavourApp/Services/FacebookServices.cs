@@ -26,7 +26,10 @@ namespace FavourApp.Services
             return facebookProfile;
         }
 
-    
+        public  FacebookProfile RemoveFacebookProfile()
+        {
+            return null;
+        }
 
 
 

@@ -19,6 +19,9 @@
                 <Label x:Name="ZipLabel" Text="{Binding User.Zip}"/>
                 <Label x:Name="DescriptionLabel" Text="{Binding User.Description}"/>
                 <Label x:Name="RangeLabel" Text="{Binding User.Range}"/>
+
+
+                <Button Text="Logout" x:Name="Logout" Clicked="Logout_Clicked"/>
             </StackLayout>
         </StackLayout>
 

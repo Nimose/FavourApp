@@ -41,7 +41,7 @@ namespace FavourApp
                 Fname = FnameLabel.Text,
                 Lname = LnameLabel.Text,
                 Facebookid = FacebookIdLabel.Text,
-                Imgurl = ImageUrl.ToString(),
+                Imgurl = ImageUrl.Source.ToString(),
                 Range = int.Parse(Range.Text),
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()

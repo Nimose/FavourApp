@@ -25,6 +25,12 @@ namespace FavourApp.ViewModels
             var facebookServices = new FacebookServices();
 
             FacebookProfile = await facebookServices.GetFacebookProfileAsync(accessToken);
+            
+        }
+
+        public void RemoveFacebookUserProfile() {
+            var facebookServices = new FacebookServices();
+            FacebookProfile =  facebookServices.RemoveFacebookProfile();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

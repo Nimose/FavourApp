@@ -9,7 +9,7 @@
         <Label x:Name="FnameLabel" Text=""/>
         <Label x:Name="LnameLabel" Text=""/>
 
-        <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric" />
+        <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric"/>
         <Entry x:Name="Description" Placeholder="Description"/>
         <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
 
