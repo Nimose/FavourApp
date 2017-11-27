@@ -40,6 +40,9 @@
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\WebViewCustom .cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\ConversationMessage.cs" />
+    <Compile Include="ViewModels\ConversationViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

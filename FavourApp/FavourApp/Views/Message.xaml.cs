@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FavourApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,16 @@ namespace FavourApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Message : ContentPage
 	{
-		public Message ()
+        User User;
+		public Message (User user)
 		{
+            this.User = user;
 			InitializeComponent ();
 		}
-	}
+
+        private void SendMessage_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

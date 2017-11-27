@@ -12,18 +12,12 @@ namespace FavourApp.Droid
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.WebView> e)
         {
-
             base.OnElementChanged(e);
-            CookieManager.Instance.RemoveAllCookie();
-            
+            CookieManager.Instance.RemoveAllCookie();           
             this.Control.ClearCache(true);
             this.Control.ClearHistory();
             this.Control.ClearFormData();
-
-
-
         }
-
-
     }
 }
+

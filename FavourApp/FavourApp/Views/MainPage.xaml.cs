@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using FavourApp.Models;
-using System.Collections.ObjectModel;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Diagnostics;
 using FavourApp.ViewModels;
-using FavourApp.Services;
-using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FavourApp
 {
     public partial class MainPage : ContentPage
@@ -19,13 +11,13 @@ namespace FavourApp
         {
             BindingContext = new ProfilesViewModel();
             (BindingContext as ProfilesViewModel).GetProfilesWithServices();
-
             InitializeComponent();
+
         }
         protected override void OnAppearing()
-        {        
-                base.OnAppearing();           
-        }            
+        {
+            base.OnAppearing();
+        }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var UserObj = (e.Item as User);

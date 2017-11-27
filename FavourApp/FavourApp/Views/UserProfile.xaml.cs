@@ -1,13 +1,15 @@
-﻿using FavourApp.Services;
+﻿using FavourApp.Models;
+using FavourApp.Services;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FavourApp
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class UserProfile : ContentPage
+    public partial class UserProfile : ContentPage
 	{
+        User User;
+
         public string fbid = "";
         public UserProfile (string facebookId)
 		{
@@ -19,7 +21,7 @@ namespace FavourApp
         {
             var favorService = new FavorService();
             var user = await favorService.GetUserAsync(fbid);
-
+            this.User = user;
             UserFname.Text = user.Fname;
             UserLname.Text = user.Lname;
             UserImage.Source = user.Imgurl;
@@ -29,7 +31,7 @@ namespace FavourApp
 
         async void Message_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Message());
+            await Navigation.PushAsync(new Message(User));
         }
     }
 }
