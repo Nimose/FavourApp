@@ -48,9 +48,11 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5">
                                 <Image Source="{Binding Imgurl}" WidthRequest="150"/>
-                                <StackLayout HorizontalOptions="StartAndExpand">
+                                <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
+                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
