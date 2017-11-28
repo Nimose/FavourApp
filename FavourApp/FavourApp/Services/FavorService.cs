@@ -1,12 +1,8 @@
 ﻿using FavourApp.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FavourApp.ViewModels;
-using Android.App;
-using System;
 using System.Text;
 
 namespace FavourApp.Services
