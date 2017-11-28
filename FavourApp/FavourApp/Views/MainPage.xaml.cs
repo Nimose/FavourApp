@@ -10,12 +10,14 @@ namespace FavourApp
         public MainPage()
         {
             BindingContext = new ProfilesViewModel();
-            (BindingContext as ProfilesViewModel).GetProfilesWithServices();
+            (BindingContext as ProfilesViewModel).GetProfiles();
+
             InitializeComponent();
 
         }
         protected override void OnAppearing()
         {
+
             base.OnAppearing();
         }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)

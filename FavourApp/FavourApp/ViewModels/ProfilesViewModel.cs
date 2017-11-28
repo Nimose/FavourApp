@@ -13,8 +13,9 @@ namespace FavourApp.ViewModels
         public async void GetProfilesWithServices()
         {
             var favorService = new FavorService();
-            var users = favorService.GetUsersAsync();
-            foreach (var user in await users)
+            var users = await favorService.GetUsersAsync();
+
+            foreach (var user in  users)
             {
                 if (user.Services.Length.Equals(0)) { }
                 else

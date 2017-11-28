@@ -26,7 +26,7 @@ namespace FavourApp.Services
         }
         public async Task<List<User>> GetUsersAsync()
         {
-            var requestUrl = Url + "user/";
+            var requestUrl = Url + "user";
             HttpClient _client = new HttpClient();
 
             var usersJson = await _client.GetStringAsync(requestUrl);
