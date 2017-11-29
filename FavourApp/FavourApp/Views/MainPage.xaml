@@ -11,8 +11,8 @@
     <StackLayout>
         <!--Category Stacklayout-->
         <StackLayout>
-            <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40">
+            <ScrollView Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="55">
                     <!--color on icons: rgba 0,0,0,25-->
                     <Button x:Name="Children"
                             Clicked="Children_Clicked"
@@ -39,7 +39,7 @@
         </StackLayout>
 
         <!--List profiles Stacklayout-->
-        <StackLayout HorizontalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="CenterAndExpand" >
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
                       ItemTapped="ProfileList_ItemTapped" 
@@ -49,9 +49,11 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5">
                                 <Image Source="{Binding Imgurl}" WidthRequest="150"/>
-                                <StackLayout HorizontalOptions="StartAndExpand">
+                                <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
+                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -63,20 +65,25 @@
         <!--End buttons Stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="55"
                      BackgroundColor="#2196F3">
-            <Button x:Name="Home"
+            <StackLayout  Orientation="Horizontal"
+                          HorizontalOptions="CenterAndExpand">
+                <Button x:Name="Home"
                     Image="home.png"
                     BackgroundColor="Transparent"/>
-            <Button x:Name="Following"
+                <Button x:Name="Following"
                     Image="following.png"
                     BackgroundColor="Transparent"/>
-            <Button x:Name="Inbox"
+                <Button x:Name="Inbox"
                     Image="inbox.png" 
                     BackgroundColor="Transparent"/>
-            <Button x:Name="Profile"
+                <Button x:Name="Profile"
                     Clicked="Profile_Clicked"
                     Image="profile.png" 
                     BackgroundColor="Transparent"/>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ContentPage>
