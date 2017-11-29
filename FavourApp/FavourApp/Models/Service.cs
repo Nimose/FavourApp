@@ -14,5 +14,10 @@ namespace FavourApp.Models
         {
             throw new NotImplementedException();
         }
+
+        public static implicit operator Service(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

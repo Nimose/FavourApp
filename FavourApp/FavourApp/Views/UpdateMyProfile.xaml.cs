@@ -89,8 +89,14 @@ namespace FavourApp
         {
             var item = (e.Item as Service);
             PriceService.Text = item.Price.ToString();
-            PickerService.Items[PickerService.SelectedIndex] = item.CategoryName;
+            //PickerService.Items[PickerService.SelectedIndex] = item.CategoryName;
 
         }
-    }
+        public void OnDelete(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            var item = e.SelectedItem;
+            listItems.Remove(item);
+        }
+        }
 }

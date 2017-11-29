@@ -38,7 +38,16 @@
         <ListView x:Name="ListServices" ItemTapped="ListServices_ItemTapped" >
             <ListView.ItemTemplate >
                 <DataTemplate>
-                    <TextCell Text="{Binding CategoryName}" Detail="{Binding Price}"/>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+               Text="Delete" IsDestructive="True" />
+                        </ViewCell.ContextActions>
+                        <StackLayout Padding="15,0">
+                            <Label Text="{Binding CategoryName}" />
+                            <Label Text="{Binding Price}"/>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
