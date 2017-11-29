@@ -5,7 +5,6 @@
 
     <StackLayout>
         <Image x:Name="ImageUrl" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
-        <Label x:Name="FacebookIdLabel" Text=""/>
         <Label x:Name="FnameLabel" Text=""/>
         <Label x:Name="LnameLabel" Text=""/>
 
@@ -17,13 +16,13 @@
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="FillAndExpand">
-            
+
             <Picker x:Name="PickerService" 
                     Title="Vælg service"  
                     ItemsSource="{Binding Categories}"
                     ItemDisplayBinding="{Binding Name}"
                     HorizontalOptions="StartAndExpand"/>
-            
+
             <Entry x:Name="PriceService" 
                    Placeholder="Timepris" 
                    Keyboard="Numeric" 
@@ -34,12 +33,12 @@
                     BackgroundColor="Transparent" 
                     HorizontalOptions="EndAndExpand"/>
         </StackLayout>
-        
+
         <!--Servicelist-->
-        <ListView x:Name="ListServices">
+        <ListView x:Name="ListServices" ItemTapped="ListServices_ItemTapped" >
             <ListView.ItemTemplate >
                 <DataTemplate>
-                    <TextCell Text="{Binding Category}" Detail="{Binding Price}" />
+                    <TextCell Text="{Binding CategoryName}" Detail="{Binding Price}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

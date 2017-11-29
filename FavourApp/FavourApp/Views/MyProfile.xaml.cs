@@ -28,7 +28,7 @@ namespace FavourApp
             {
                 var vm = BindingContext as FacebookViewModel;
                 await vm.SetFacebookUserProfileAsync(accessToken);
-                this.facebookProfile = vm.FacebookProfile;
+                facebookProfile = vm.FacebookProfile;
                 Content = MainStackLayout;
             }
             else
@@ -46,9 +46,7 @@ namespace FavourApp
                     HeightRequest = 1,
                 };
                 webView.Navigated += WebViewOnNavigated;
-                Content = webView;
-                
-
+                Content = webView;               
             }
 
             base.OnAppearing();
@@ -61,7 +59,7 @@ namespace FavourApp
             {
                 var vm = BindingContext as FacebookViewModel;
                 await vm.SetFacebookUserProfileAsync(accessToken);
-                this.facebookProfile = vm.FacebookProfile;                
+                facebookProfile = vm.FacebookProfile;                
                 Content = MainStackLayout;
             }
         }

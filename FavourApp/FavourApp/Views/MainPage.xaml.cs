@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using FavourApp.Models;
 using FavourApp.ViewModels;
+using FavourApp.Views;
 
 namespace FavourApp
 {
@@ -30,6 +31,12 @@ namespace FavourApp
         async void Profile_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MyProfile());
+        }
+
+        async void  Children_Clicked(object sender, EventArgs e)
+        {
+            string categoryName = "børnepasning";
+            await Navigation.PushAsync(new ServiceCategory(categoryName));
         }
     }
 

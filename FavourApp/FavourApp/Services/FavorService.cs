@@ -18,7 +18,7 @@ namespace FavourApp.Services
 
         public async Task<User> GetUserAsync(string facebookId)
         {
-            var requestUrl = Url + "user/" + facebookId;
+            var requestUrl = Url + "user/" + facebookId + ApiKey;
             HttpClient _client = new HttpClient();
             var userJson = await _client.GetStringAsync(requestUrl);
             var user = JsonConvert.DeserializeObject<User>(userJson);
@@ -26,7 +26,7 @@ namespace FavourApp.Services
         }
         public async Task<List<User>> GetUsersAsync()
         {
-            var requestUrl = Url + "user";
+            var requestUrl = Url + "user" + ApiKey;
             HttpClient _client = new HttpClient();
 
             var usersJson = await _client.GetStringAsync(requestUrl);
@@ -37,7 +37,7 @@ namespace FavourApp.Services
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            var requestUrl = Url + "categories/";
+            var requestUrl = Url + "categories" + ApiKey;
             HttpClient _client = new HttpClient();
             var categoriesJson = await _client.GetStringAsync(requestUrl);
             var categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
@@ -45,7 +45,7 @@ namespace FavourApp.Services
         }
         public async Task<List<Models.Service>> GetServicesAsync()
         {
-            var requestUrl = Url + "user/";
+            var requestUrl = Url + "user" + ApiKey;
             HttpClient _client = new HttpClient();
             var servicesJson = await _client.GetStringAsync(requestUrl);
             var services = JsonConvert.DeserializeObject<List<Models.Service>>(servicesJson);
@@ -67,18 +67,18 @@ namespace FavourApp.Services
         }
 
 
-        //public bool CheckUser(string facebookId)
-        //{
-        //    var user = GetUserAsync(facebookId);
-        //    if (user == null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool CheckUser(string facebookId)
+        {
+            var user = GetUserAsync(facebookId);
+            if (user == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
 
@@ -105,6 +105,17 @@ namespace FavourApp.Services
             HttpClient _client = new HttpClient();
             var conversationMessageJson = JsonConvert.SerializeObject(conversationMessage);
             await _client.PostAsync(postUrl, new StringContent(conversationMessageJson, Encoding.UTF8, "application/json"));
+        }
+
+
+        public async Task<List<User>> GetUsersWithServiceAsync(string categoryName)
+        {
+            var requestUrl = Url + "user/services/" + categoryName + ApiKey;
+            HttpClient _client = new HttpClient();
+
+            var usersJson = await _client.GetStringAsync(requestUrl);
+            var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
+            return users;
         }
     }
 

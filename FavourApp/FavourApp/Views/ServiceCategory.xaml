@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FavourApp"
-             x:Class="FavourApp.MainPage">
+             x:Class="FavourApp.Views.ServiceCategory">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Location" Icon="map.png" Priority="0" Order="Primary"/>
         <ToolbarItem Name="Search" Icon="search.png" Priority="1" Order="Primary"/>
@@ -15,7 +13,7 @@
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40">
                     <!--color on icons: rgba 0,0,0,25-->
                     <Button x:Name="Children"
-                            Clicked="Children_Clicked"
+                            
                         Image="children.png"
                         BackgroundColor="Transparent"
                             BorderColor="White"
@@ -43,7 +41,7 @@
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
                       ItemTapped="ProfileList_ItemTapped" 
-                      ItemsSource="{Binding Profiles}" > 
+                      ItemsSource="{Binding ProfilesWithService}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

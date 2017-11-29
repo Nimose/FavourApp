@@ -18,20 +18,15 @@ namespace FavourApp.Services
                 "access_token=" + accessToken;
 
             var httpClient = new HttpClient();
-
             var userJson = await httpClient.GetStringAsync(requestUrl);
-
             var facebookProfile = JsonConvert.DeserializeObject<FacebookProfile>(userJson);
-
             return facebookProfile;
         }
-
+    
         public  FacebookProfile RemoveFacebookProfile()
         {
             return null;
         }
-
-
 
     }
 }
