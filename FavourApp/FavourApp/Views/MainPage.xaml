@@ -53,7 +53,6 @@
                                     HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
-                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

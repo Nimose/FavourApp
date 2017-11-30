@@ -12,13 +12,10 @@ namespace FavourApp
         {
             BindingContext = new ProfilesViewModel();
             (BindingContext as ProfilesViewModel).GetProfiles();
-
             InitializeComponent();
-
         }
         protected override void OnAppearing()
         {
-
             base.OnAppearing();
         }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -39,6 +36,5 @@ namespace FavourApp
             await Navigation.PushAsync(new ServiceCategory(categoryName));
         }
     }
-
 }
 

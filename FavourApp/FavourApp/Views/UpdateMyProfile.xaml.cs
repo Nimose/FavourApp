@@ -70,7 +70,7 @@ namespace FavourApp
             {
                 Service service = new Service
                 {
-                    CategoryName = selectedValue,
+                    Category = selectedValue,
                     Price = price
                 };
                 listItems.Add(service);
@@ -93,10 +93,8 @@ namespace FavourApp
 
         }
         public void OnDelete(object sender, SelectedItemChangedEventArgs e)
-        {
-
-            var item = e.SelectedItem;
-            listItems.Remove(item);
+        {            
+            listItems.Remove(e.SelectedItem as Service);
         }
         }
 }
