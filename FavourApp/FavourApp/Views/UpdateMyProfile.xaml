@@ -42,9 +42,10 @@
                         <ViewCell.ContextActions>
                             <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="True" />
                         </ViewCell.ContextActions>
-                        <StackLayout Padding="15,0">
+                        <StackLayout Padding="15,0" Orientation="Horizontal">
                             <Label Text="{Binding Category}" />
                             <Label Text="{Binding Price}"/>
+                           
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

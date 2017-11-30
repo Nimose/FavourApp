@@ -25,7 +25,7 @@ namespace FavourApp.Views
             try
             {
                 var favorService = new FavorService();
-                ProfileList.ItemsSource = await favorService.GetProfilesWithCategories(catName);
+                ProfileList.ItemsSource = await favorService.GetUsersCategoryAsync();
             }
             catch (Exception e)
             {

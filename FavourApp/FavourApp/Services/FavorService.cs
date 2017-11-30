@@ -30,20 +30,19 @@ namespace FavourApp.Services
             return users;
         }
 
-        public async Task<List<User>> GetProfilesWithCategories(string categoryName)
+        public async Task<List<User>> GetUsersCategoryAsync()
         {
-            var requestUrl = Url + "user/services/" + categoryName + ApiKey;
+
+            //string categoryName = "dyrepasning";
+            var requestUrl = Url + "user/services/børnepasning" + ApiKey;
             HttpClient _client = new HttpClient();
 
             var usersJson = await _client.GetStringAsync(requestUrl);
-            
-            var usersWithCategories = JsonConvert.DeserializeObject<List<User>>(usersJson);
-            return usersWithCategories;
-
+            var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
+            return users;
         }
 
-
-
+ 
         public async Task<List<Category>> GetCategoriesAsync()
         {
             var requestUrl = Url + "categories" + ApiKey;
@@ -87,8 +86,6 @@ namespace FavourApp.Services
             }
         }
 
-
-
         public async Task<Conversation> GetConversation(string userId, string conversationId)
         {
             var requestUrl = Url + "user/" + userId + "conversation/" + conversationId + ApiKey;
@@ -113,18 +110,6 @@ namespace FavourApp.Services
             var conversationMessageJson = JsonConvert.SerializeObject(conversationMessage);
             await _client.PostAsync(postUrl, new StringContent(conversationMessageJson, Encoding.UTF8, "application/json"));
         }
-
-
-        public async Task<List<User>> GetUsersWithServiceAsync(string categoryName)
-        {
-            var requestUrl = Url + "user/services/" + categoryName + ApiKey;
-            HttpClient _client = new HttpClient();
-
-            var usersJson = await _client.GetStringAsync(requestUrl);
-            var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
-            return users;
-        }
-
     }
 
 }

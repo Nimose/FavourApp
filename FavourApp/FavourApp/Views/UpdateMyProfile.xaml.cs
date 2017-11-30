@@ -74,7 +74,7 @@ namespace FavourApp
                     Price = price
                 };
                 listItems.Add(service);
-                
+
                 PickerService.SelectedIndex = -1;
                 PriceService.Text = "";
             }
@@ -92,9 +92,13 @@ namespace FavourApp
             //PickerService.Items[PickerService.SelectedIndex] = item.CategoryName;
 
         }
-        public void OnDelete(object sender, SelectedItemChangedEventArgs e)
-        {            
-            listItems.Remove(e.SelectedItem as Service);
+        public void OnDelete(object sender, ItemTappedEventArgs e)
+        {
+            var item = (sender as MenuItem).BindingContext as Service;
+
+            listItems.Remove(item);
         }
-        }
+
+        
+    }
 }
