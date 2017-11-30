@@ -27,8 +27,6 @@ namespace FavourApp.Models
 
         [JsonProperty("services")]
         public Service[] Services { get; set; }
-
-        //public Conversation[] Conversations { get; set; }
-
+      
     }
 }

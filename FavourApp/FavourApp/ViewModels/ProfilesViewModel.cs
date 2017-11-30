@@ -9,7 +9,7 @@ namespace FavourApp.ViewModels
     {
         public ObservableCollection<User> Profiles { get; private set; } = new ObservableCollection<User>();
         public ObservableCollection<User> ProfilesWithServices { get; private set; } = new ObservableCollection<User>();
-        public ObservableCollection<User> ProfilesWithService { get; private set; } = new ObservableCollection<User>();
+        //public ObservableCollection<User> ProfilesWithService { get; private set; } = new ObservableCollection<User>();
 
         public async void GetProfilesWithServices()
         {
@@ -46,15 +46,18 @@ namespace FavourApp.ViewModels
             }
         }
 
-        public async void GetProfilesWithService(string categoryName)
-        {
-            var favorService = new FavorService();
-            List<User> users = await favorService.GetUsersWithServiceAsync(categoryName);
-            foreach (var user in users)
-            {
-                ProfilesWithService.Add(user);
-            }
-        }
+
+       
+
+
+
+        //public async void GetProfilesWithService(string categoryName)
+        //{
+        //    var favorService = new FavorService();
+        //    List<User> users = await favorService.GetUsersWithServiceAsync(categoryName);
+        //    var usersList = new ObservableCollection<User>(users);
+        //    ProfilesWithService = usersList;
+        //}
 
         public void CreateProfile(User user)
         {

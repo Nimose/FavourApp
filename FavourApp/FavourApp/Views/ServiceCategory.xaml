@@ -41,7 +41,7 @@
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
                       ItemTapped="ProfileList_ItemTapped" 
-                      ItemsSource="{Binding ProfilesWithService}" >
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

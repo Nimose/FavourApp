@@ -40,11 +40,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
-               Text="Delete" IsDestructive="True" />
+                            <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="True" />
                         </ViewCell.ContextActions>
                         <StackLayout Padding="15,0">
-                            <Label Text="{Binding CategoryName}" />
+                            <Label Text="{Binding Category}" />
                             <Label Text="{Binding Price}"/>
                         </StackLayout>
                     </ViewCell>
