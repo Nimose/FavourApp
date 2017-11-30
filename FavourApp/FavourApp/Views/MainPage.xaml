@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:FavourApp"
              x:Class="FavourApp.MainPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Location" Icon="map.png" Priority="0" Order="Primary"/>
+        <ToolbarItem Text="FavorApp" />
         <ToolbarItem Name="Search" Icon="search.png" Priority="1" Order="Primary"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
