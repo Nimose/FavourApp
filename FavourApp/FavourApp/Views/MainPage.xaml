@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
+             Title="FavorApp"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FavourApp"
              x:Class="FavourApp.MainPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="FavorApp" />
-        <ToolbarItem Name="Search" Icon="search.png" Priority="1" Order="Primary"/>
-    </ContentPage.ToolbarItems>
+
     <StackLayout>
         <!--Category Stacklayout-->
         <StackLayout>
             <ScrollView Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="55">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="40">
                     <!--color on icons: rgba 0,0,0,25-->
                     <Button x:Name="Children"
                             Clicked="Children_Clicked"
@@ -23,14 +21,17 @@
                             BorderWidth="0"/>
 
                     <Button x:Name="Garden"
+                            Clicked="Garden_Clicked"
                         Image="garden.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Shopping"
+                            Clicked="Shopping_Clicked"
                         Image="shopping.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Travel"
+                            Clicked="Travel_Clicked"
                             Image="travel.png"
                             BackgroundColor="Transparent"/>
                 </StackLayout>
@@ -43,7 +44,7 @@
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
                       ItemTapped="ProfileList_ItemTapped" 
-                      ItemsSource="{Binding Profiles}" > 
+                      ItemsSource="{Binding Profiles}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -55,6 +56,8 @@
                                     <Label Text="{Binding Lname}"/>
                                 </StackLayout>
                             </StackLayout>
+
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -70,12 +73,11 @@
             <StackLayout  Orientation="Horizontal"
                           HorizontalOptions="CenterAndExpand">
                 <Button x:Name="Home"
+                        Clicked="Home_Clicked"
                     Image="home.png"
                     BackgroundColor="Transparent"/>
-                <Button x:Name="Following"
-                    Image="following.png"
-                    BackgroundColor="Transparent"/>
                 <Button x:Name="Inbox"
+                        Clicked="Inbox_Clicked"
                     Image="inbox.png" 
                     BackgroundColor="Transparent"/>
                 <Button x:Name="Profile"

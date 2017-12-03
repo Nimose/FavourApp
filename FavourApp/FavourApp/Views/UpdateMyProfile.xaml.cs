@@ -58,7 +58,7 @@ namespace FavourApp
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()
             };
-            favorService.CreateProfileAsync(user);
+            favorService.CreateUserAsync(user);
             await Navigation.PopModalAsync();
         }
 
@@ -94,8 +94,7 @@ namespace FavourApp
         }
         public void OnDelete(object sender, ItemTappedEventArgs e)
         {
-            var item = (sender as MenuItem).BindingContext as Service;
-
+            var item = (sender as MenuItem).BindingContext as Service;        
             listItems.Remove(item);
         }
 

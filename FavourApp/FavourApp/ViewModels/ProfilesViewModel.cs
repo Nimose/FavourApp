@@ -9,7 +9,7 @@ namespace FavourApp.ViewModels
     {
         public ObservableCollection<User> Profiles { get; private set; } = new ObservableCollection<User>();
         public ObservableCollection<User> ProfilesWithServices { get; private set; } = new ObservableCollection<User>();
-        //public ObservableCollection<User> ProfilesWithService { get; private set; } = new ObservableCollection<User>();
+        public ObservableCollection<User> ProfilesWithCategories { get; private set; } = new ObservableCollection<User>();
 
         public async void GetProfilesWithServices()
         {
@@ -46,27 +46,24 @@ namespace FavourApp.ViewModels
             }
         }
 
-
-       
-
-
-
-        //public async void GetProfilesWithService(string categoryName)
-        //{
-        //    var favorService = new FavorService();
-        //    List<User> users = await favorService.GetUsersWithServiceAsync(categoryName);
-        //    var usersList = new ObservableCollection<User>(users);
-        //    ProfilesWithService = usersList;
-        //}
+        public async void GetProfilesWithCategory(string categoryName)
+        {
+            var favorService = new FavorService();
+            List<User> users = await favorService.GetUsersCategoryAsync(categoryName);          
+            foreach (var user in users)
+            {
+                ProfilesWithCategories.Add(user);
+            }
+        }
 
         public void CreateProfile(User user)
         {
             var favorService = new FavorService();
             if (CheckProfile(user) == true)
             {
-                favorService.CreateProfileAsync(user);
+                favorService.CreateUserAsync(user);
             }
-            favorService.UpdateProfileAsync(user);
+            favorService.UpdateUserAsync(user);
         }
 
         public bool CheckProfile(User user)
@@ -79,7 +76,6 @@ namespace FavourApp.ViewModels
             }
             return true;
         }
-
       
     }
 }

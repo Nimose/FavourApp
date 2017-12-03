@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage             
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FavourApp.Views.ServiceCategory">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Location" Icon="map.png" Priority="0" Order="Primary"/>
-        <ToolbarItem Name="Search" Icon="search.png" Priority="1" Order="Primary"/>
-    </ContentPage.ToolbarItems>
+    
     <StackLayout>
         <!--Category Stacklayout-->
         <StackLayout>
@@ -13,7 +11,7 @@
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40">
                     <!--color on icons: rgba 0,0,0,25-->
                     <Button x:Name="Children"
-                            
+                            Clicked="Children_Clicked"
                         Image="children.png"
                         BackgroundColor="Transparent"
                             BorderColor="White"
@@ -21,14 +19,17 @@
                             BorderWidth="0"/>
 
                     <Button x:Name="Garden"
+                            Clicked="Garden_Clicked"
                         Image="garden.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Shopping"
+                            Clicked="Shopping_Clicked"
                         Image="shopping.png"
                         BackgroundColor="Transparent"/>
 
                     <Button x:Name="Travel"
+                            Clicked="Travel_Clicked"
                             Image="travel.png"
                             BackgroundColor="Transparent"/>
                 </StackLayout>
@@ -41,16 +42,19 @@
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
                       ItemTapped="ProfileList_ItemTapped" 
+                      ItemsSource="{Binding ProfilesWithCategories}"
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5">
                                 <Image Source="{Binding Imgurl}" WidthRequest="150"/>
-                                <StackLayout HorizontalOptions="StartAndExpand">
+                                <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
                                 </StackLayout>
+                                <Label Text="{Binding Description}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -61,13 +65,14 @@
         <!--End buttons Stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="55"
                      BackgroundColor="#2196F3">
             <Button x:Name="Home"
+                    Clicked="Home_Clicked"
                     Image="home.png"
                     BackgroundColor="Transparent"/>
-            <Button x:Name="Following"
-                    Image="following.png"
-                    BackgroundColor="Transparent"/>
+           
             <Button x:Name="Inbox"
                     Image="inbox.png" 
                     BackgroundColor="Transparent"/>

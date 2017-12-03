@@ -1,10 +1,8 @@
 ﻿using FavourApp.Models;
 using FavourApp.ViewModels;
 using System.Collections.ObjectModel;
-using System.Net.Http;
 using Xamarin.Forms;
 using FavourApp.Helpers;
-using FavourApp.Services;
 using Xamarin.Forms.Xaml;
 
 namespace FavourApp
@@ -59,7 +57,8 @@ namespace FavourApp
             {
                 var vm = BindingContext as FacebookViewModel;
                 await vm.SetFacebookUserProfileAsync(accessToken);
-                facebookProfile = vm.FacebookProfile;                
+                facebookProfile = vm.FacebookProfile;
+                Settings.FacebookId = facebookProfile.Id;
                 Content = MainStackLayout;
             }
         }

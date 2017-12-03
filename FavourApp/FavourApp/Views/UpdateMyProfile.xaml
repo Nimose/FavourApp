@@ -45,13 +45,11 @@
                         <StackLayout Padding="15,0" Orientation="Horizontal">
                             <Label Text="{Binding Category}" />
                             <Label Text="{Binding Price}"/>
-                           
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"

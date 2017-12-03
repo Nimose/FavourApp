@@ -41,8 +41,11 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\WebViewCustom .cs" />
     <Compile Include="Models\Conversation.cs" />
-    <Compile Include="Models\ConversationMessage.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="ViewModels\ConversationViewModel.cs" />
+    <Compile Include="Views\Inbox.xaml.cs">
+      <DependentUpon>Inbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ServiceCategory.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Inbox.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

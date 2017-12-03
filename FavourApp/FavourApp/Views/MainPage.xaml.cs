@@ -30,10 +30,39 @@ namespace FavourApp
             await Navigation.PushAsync(new MyProfile());
         }
 
-        async void  Children_Clicked(object sender, EventArgs e)
+        async void Children_Clicked(object sender, EventArgs e)
         {
             string categoryName = "børnepasning";
             await Navigation.PushAsync(new ServiceCategory(categoryName));
+        }
+
+        async void Garden_Clicked(object sender, EventArgs e)
+        {
+            string categoryName = "havearvejde";
+            await Navigation.PushAsync(new ServiceCategory(categoryName));
+
+        }
+
+        async void Shopping_Clicked(object sender, EventArgs e)
+        {
+            string categoryName = "indkøb";
+            await Navigation.PushAsync(new ServiceCategory(categoryName));
+        }
+
+        async void Travel_Clicked(object sender, EventArgs e)
+        {
+            string categoryName = "transport";
+            await Navigation.PushAsync(new ServiceCategory(categoryName));
+        }
+
+        async void Home_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopToRootAsync();
+        }
+
+        async void Inbox_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Inbox());
         }
     }
 }

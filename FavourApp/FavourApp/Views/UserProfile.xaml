@@ -32,7 +32,7 @@
             <Button x:Name="Message"
                     Clicked="Message_Clicked"
                     Image="inbox.png" 
-                    Text="Skriv til bruger"
+                    Text="Skriv til"
                     FontAttributes="Bold"
                     TextColor="White"
                     BackgroundColor="Transparent"/>

@@ -2,19 +2,18 @@
 using FavourApp.Services;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+using FavourApp.Helpers;
 namespace FavourApp
 {
     public partial class UserProfile : ContentPage
-	{
+    {
         User User;
 
         public string fbid = "";
-        public UserProfile (string facebookId)
-		{
+        public UserProfile(string facebookId)
+        {
             this.fbid = facebookId;
-			InitializeComponent ();
+            InitializeComponent();
         }
 
         protected override async void OnAppearing()
@@ -31,6 +30,9 @@ namespace FavourApp
 
         async void Message_Clicked(object sender, EventArgs e)
         {
+            var favorService = new FavorService();
+            favorService.CreateConversationAsync(User.Facebookid, Settings.FacebookId);
+            //var conversation = favorService.GetConversationAsync()
             await Navigation.PushAsync(new Message(User));
         }
     }

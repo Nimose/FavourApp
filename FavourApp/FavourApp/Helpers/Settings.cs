@@ -25,11 +25,11 @@ namespace FavourApp.Helpers
         private static readonly string SettingsDefault = string.Empty;
 
 
+        private const string FacebookIdKey = "facebookId";
+        private static readonly string SettingsDefault_ = string.Empty;
+
+
         #endregion
-
-
-
-
 
         public static string AccessToken
         {
@@ -43,6 +43,21 @@ namespace FavourApp.Helpers
             }
         }
         public static void RemoveAccessToken() => AppSettings.Remove(nameof(AccessToken));
+
+
+        public static string FacebookId
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(FacebookIdKey, SettingsDefault_);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(FacebookIdKey, value);
+            }
+        }
+        public static void RemoveFacebookId() => AppSettings.Remove(nameof(FacebookId));
+
 
         public static void ClearEverything()
         {
