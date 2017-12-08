@@ -53,7 +53,7 @@ namespace FavourApp
             var message = new FavourApp.Models.Message
             {
                 ConversationID = ConversationId,
-                UserId = User.Facebookid,
+                UserId = Settings.FacebookId,
                 Timestamp = DateTime.Now,
                 ConversationMessage = MessageToSend.Text
             };

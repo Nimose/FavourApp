@@ -29,7 +29,7 @@ namespace FavourApp.Views
         {
             var conversation = e.Item as Conversation;
             var favorService = new FavorService();
-            User user = await favorService.GetUserAsync(conversation.Users.GetValue(0).ToString());
+            User user = await favorService.GetUserAsync(conversation.Users.GetValue(1).ToString());
             await Navigation.PushAsync(new Message(user, conversation.Id));
         }
     }
