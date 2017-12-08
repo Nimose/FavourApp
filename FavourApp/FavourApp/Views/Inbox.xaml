@@ -5,7 +5,7 @@
 
 
     <StackLayout x:Name="MainStackLayout">
-        <ListView ItemsSource="{Binding Conversations}">
+        <ListView x:Name="ConversationsList" ItemTapped="ConversationsList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

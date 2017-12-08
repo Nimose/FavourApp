@@ -30,10 +30,8 @@ namespace FavourApp
 
         async void Message_Clicked(object sender, EventArgs e)
         {
-            var favorService = new FavorService();
-            favorService.CreateConversationAsync(User.Facebookid, Settings.FacebookId);
-            //var conversation = favorService.GetConversationAsync()
-            await Navigation.PushAsync(new Message(User));
+            var favorService = new FavorService();            
+            await Navigation.PushAsync(new Message(User, await favorService.CreateConversationAsync(User.Facebookid, Settings.FacebookId)));
         }
     }
 }

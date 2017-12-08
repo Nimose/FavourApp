@@ -4,11 +4,21 @@
              x:Class="FavourApp.Message">
     <StackLayout x:Name="MessageStackLayout" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-        <ListView x:Name="Conversation" 
+        <ListView x:Name="ConversationList" 
                   VerticalOptions="FillAndExpand" 
-                  HorizontalOptions="FillAndExpand"/>
+                  HorizontalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <Label Text="{Binding UserId}"/>
+                            <Label Text="{Binding ConversationMessage}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate></ListView>
 
-        <!--End buttons Stacklayout-->
+            <!--End buttons Stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="FillAndExpand"
                      BackgroundColor="#2196F3">

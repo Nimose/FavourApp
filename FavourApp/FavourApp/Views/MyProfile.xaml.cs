@@ -9,7 +9,7 @@ namespace FavourApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyProfile : ContentPage
-    {     
+    {
         ObservableCollection<Service> listItems = new ObservableCollection<Service>();
         FacebookProfile facebookProfile;
         private string ClientId = "930931753728262";
@@ -19,6 +19,7 @@ namespace FavourApp
             InitializeComponent();
         }
 
+        #region Login 
         protected async override void OnAppearing()
         {
             var accessToken = Settings.AccessToken;
@@ -37,14 +38,14 @@ namespace FavourApp
                 + "&display=popup"
                 + "&response_type=token"
                 + "&redirect_uri=https://www.facebook.com/connect/login_success.html";
-                
+
                 var webView = new WebViewCustom()
                 {
                     Source = apiRequest,
                     HeightRequest = 1,
                 };
                 webView.Navigated += WebViewOnNavigated;
-                Content = webView;               
+                Content = webView;
             }
 
             base.OnAppearing();
@@ -74,6 +75,7 @@ namespace FavourApp
             }
             return string.Empty;
         }
+        #endregion
 
         async void UpdateUser_Clicked(object sender, System.EventArgs e)
         {
@@ -81,7 +83,7 @@ namespace FavourApp
         }
 
         private async void Logout_Clicked(object sender, System.EventArgs e)
-        {           
+        {
             Settings.ClearEverything();
             await Navigation.PopToRootAsync();
         }
