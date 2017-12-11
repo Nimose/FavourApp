@@ -79,11 +79,13 @@ namespace FavourApp.Services
         #region Conversation and messages    
         public async Task<List<Conversation>> GetConversationsAsync(string userId)
         {
+        
             var requestUrl = Url + "conversation/user/" + userId + ApiKey;
             HttpClient _client = new HttpClient();
             var conversationsJson = await _client.GetStringAsync(requestUrl);
             var conversations = JsonConvert.DeserializeObject<List<Conversation>>(conversationsJson);
             return conversations;
+
         }
 
         public async Task<Conversation> GetConversationAsync(string conversationId)
@@ -155,7 +157,7 @@ namespace FavourApp.Services
         public async Task<string> CheckConversationAsync(string userIdOne, string userIdTwo)
         {
             var conversations = await GetConversationsAsync(userIdOne);
-         
+
             foreach (var conversation in conversations)
             {
                 if (conversation.Users.Equals(userIdTwo))
@@ -167,21 +169,38 @@ namespace FavourApp.Services
         }
         #endregion
 
-        public async Task<string> TestMethod(string userIdOne, string userIdTwo)
+
+
+
+
+        public async Task<Conversation> ReturnConversationAsync(string userId, string recipient)
         {
-            var check = CheckConversationAsync(userIdOne, userIdTwo);
-            string conversationId = "";
-            if (check.Result == string.Empty)
+            var conversationId = "";
+            List<Conversation> conversations = await GetConversationsAsync(userId);
+            if (conversations.Count > 0)
             {
-                conversationId = await CreateConversationAsync(userIdTwo, userIdTwo);
+                foreach (var convo in conversations)
+                {
+                    foreach (var user in convo.Users)
+                    {
+                        if (user == recipient)
+                        {
+                            conversationId = convo.Id;
+                        }
+                        else
+                        {
+                            conversationId = await CreateConversationAsync(userId, recipient);
+                        }
+                    }
+                }
             }
             else
             {
-                var conversation = await GetConversationAsync(check.Result);
-                conversationId = conversation.Id;
+                conversationId = await CreateConversationAsync(userId, recipient);
             }
-            return conversationId;
 
+            Conversation conversation = await GetConversationAsync(conversationId);
+            return conversation;
         }
     }
 }
