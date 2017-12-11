@@ -15,11 +15,17 @@ namespace FavourApp.Views
         //private string ClientId = "930931753728262";
         string userId = Settings.FacebookId;
         public Inbox()
-        {         
+        {                 
             InitializeComponent();
+
+
         }
         protected override async void OnAppearing()
         {
+            if (Settings.FacebookId == "" & Settings.AccessToken == "")
+            {
+                await Navigation.PushAsync(new MyProfile());
+            }
             var favorService = new FavorService();
             ConversationsList.ItemsSource = await favorService.GetConversationsAsync(userId);
             base.OnAppearing();

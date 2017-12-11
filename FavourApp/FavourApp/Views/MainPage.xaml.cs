@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using FavourApp.Models;
-using FavourApp.ViewModels;
 using FavourApp.Views;
 using FavourApp.Services;
 
@@ -10,16 +9,14 @@ namespace FavourApp
     public partial class MainPage : ContentPage
     {
         public MainPage()
-        {
-            //BindingContext = new ProfilesViewModel();
-            //(BindingContext as ProfilesViewModel).GetProfiles();
+        {          
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
 
             var favorService = new FavorService();
-            ProfileList.ItemsSource = await favorService.GetUsersAsync();
+            ProfileList.ItemsSource = await favorService.GetUsersWithServicesAsync();
             base.OnAppearing();
         }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)

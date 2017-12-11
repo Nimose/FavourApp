@@ -33,6 +33,31 @@ namespace FavourApp.Services
             var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
             return users;
         }
+
+        public async Task<List<User>> GetUsersWithServicesAsync()
+        {
+            var users = await GetUsersAsync();
+            List<User> usersWithServices = new List<User>();
+            foreach (var user in users)
+            {
+                if (user.Services.Length.Equals(0)) { }
+                else
+                {
+                    usersWithServices.Add(new User
+                    {
+                        Facebookid = user.Facebookid,
+                        Fname = user.Fname,
+                        Lname = user.Lname,
+                        Description = user.Description,
+                        Imgurl = user.Imgurl,
+                        Range = user.Range,
+                        Zipcode = user.Zipcode,
+                        Services = user.Services
+                    });
+                }
+            }
+            return usersWithServices;
+        }
         public async Task<List<User>> GetUsersCategoryAsync(string categoryName)
         {
             var requestUrl = Url + "user/services/" + categoryName + ApiKey;
@@ -79,7 +104,7 @@ namespace FavourApp.Services
         #region Conversation and messages    
         public async Task<List<Conversation>> GetConversationsAsync(string userId)
         {
-        
+
             var requestUrl = Url + "conversation/user/" + userId + ApiKey;
             HttpClient _client = new HttpClient();
             var conversationsJson = await _client.GetStringAsync(requestUrl);

@@ -30,6 +30,10 @@ namespace FavourApp
 
         async void Message_Clicked(object sender, EventArgs e)
         {
+            if (Settings.FacebookId == "" & Settings.AccessToken == "")
+            {
+                await Navigation.PushAsync(new MyProfile());
+            }
             var favorService = new FavorService();
             var conversation = await favorService.ReturnConversationAsync(User.Facebookid, Settings.FacebookId);
             await Navigation.PushAsync(new Message(User, conversation.Id));

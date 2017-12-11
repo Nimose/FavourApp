@@ -27,9 +27,12 @@ namespace FavourApp
         }
         protected override async void OnAppearing()
         {
-            try
+            if (Settings.FacebookId == "" & Settings.AccessToken == "")
             {
-                var favorService = new FavorService();
+                await Navigation.PushAsync(new MyProfile());
+            }
+
+            var favorService = new FavorService();
                 var messages = await favorService.GetMessagesAsync(ConversationId);
 
                 foreach (var message in messages)
@@ -37,14 +40,7 @@ namespace FavourApp
                     conversationMessages.Add(message);
                 }
                 ConversationList.ItemsSource = conversationMessages;
-                base.OnAppearing();
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
-        
+                base.OnAppearing();                 
         }
 
         private void SendMessage_Clicked(object sender, EventArgs e)
