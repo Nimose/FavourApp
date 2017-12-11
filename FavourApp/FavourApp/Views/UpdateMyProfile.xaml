@@ -19,7 +19,7 @@
 
             <Picker x:Name="PickerService" 
                     Title="Vælg service"  
-                    ItemsSource="{Binding Categories}"
+                  
                     ItemDisplayBinding="{Binding Name}"
                     HorizontalOptions="StartAndExpand"/>
 

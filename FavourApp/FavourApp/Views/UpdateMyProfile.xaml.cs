@@ -30,17 +30,21 @@ namespace FavourApp
                 Zip.Text = user.Zipcode;
                 Description.Text = user.Description;
                 Range.Text = user.Range.ToString();
-                foreach (var item in user.Services)
+                if (user.Services != null)
                 {
-                    listItems.Add(item);
+                    foreach (var item in user.Services)
+                    {
+                        listItems.Add(item);
+                    }
                 }
+             
             }
 
             ImageUrl.Source = facebookProfile.Picture.Data.Url;
             FnameLabel.Text = facebookProfile.FirstName;
             LnameLabel.Text = facebookProfile.LastName;
             ListServices.ItemsSource = listItems;
-            (BindingContext as CategoriesViewModel).GetCategories();
+            PickerService.ItemsSource = await favorService.GetCategoriesAsync();
             base.OnAppearing();
         }
 
@@ -94,10 +98,10 @@ namespace FavourApp
         }
         public void OnDelete(object sender, ItemTappedEventArgs e)
         {
-            var item = (sender as MenuItem).BindingContext as Service;        
+            var item = (sender as MenuItem).BindingContext as Service;
             listItems.Remove(item);
         }
 
-        
+
     }
 }

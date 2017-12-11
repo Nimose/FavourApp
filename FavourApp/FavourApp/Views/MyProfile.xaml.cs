@@ -72,13 +72,15 @@ namespace FavourApp
                     Imgurl = facebookProfile.Picture.Data.Url,
                     Description = string.Empty,
                     Range = 0,
-                  
+
                     Zipcode = string.Empty
                 };
+
                 var favorService = new FavorService();
-                bool check =  await favorService.CheckUserAsync(facebookProfile.Id);
+                bool check = await favorService.CheckUserAsync(facebookProfile.Id);
                 if (check == true)
                 {
+
                     favorService.CreateUserAsync(user);
                 }
 
