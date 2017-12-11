@@ -58,7 +58,7 @@ namespace FavourApp
                 Zipcode = Zip.Text,
                 Services = listItems.ToList().ToArray()
             };
-            favorService.CreateUserAsync(user);
+            favorService.UpdateUserAsync(user);
             await Navigation.PopModalAsync();
         }
 

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using System;
+using FavourApp.Helpers;
 using System.Collections;
 
 namespace FavourApp.Services
@@ -23,7 +24,6 @@ namespace FavourApp.Services
             var user = JsonConvert.DeserializeObject<User>(userJson);
             return user;
         }
-
         public async Task<List<User>> GetUsersAsync()
         {
             var requestUrl = Url + "user" + ApiKey;
@@ -33,14 +33,13 @@ namespace FavourApp.Services
             var users = JsonConvert.DeserializeObject<List<User>>(usersJson);
             return users;
         }
-
         public async Task<List<User>> GetUsersWithServicesAsync()
         {
             var users = await GetUsersAsync();
             List<User> usersWithServices = new List<User>();
             foreach (var user in users)
             {
-                if (user.Services.Length.Equals(0)) { }
+                if (user.Services.Length.Equals(0) || user.Services.Equals(null)) { }
                 else
                 {
                     usersWithServices.Add(new User
@@ -166,38 +165,15 @@ namespace FavourApp.Services
         #endregion
 
         #region Check methods
-        public bool CheckUser(string facebookId)
+        public async Task<Boolean> CheckUserAsync(string facebookId)
         {
-            var user = GetUserAsync(facebookId);
+            User user = await GetUserAsync(facebookId);
             if (user == null)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-
-        public async Task<string> CheckConversationAsync(string userIdOne, string userIdTwo)
-        {
-            var conversations = await GetConversationsAsync(userIdOne);
-
-            foreach (var conversation in conversations)
-            {
-                if (conversation.Users.Equals(userIdTwo))
-                {
-                    return conversation.Id;
-                }
-            }
-            return string.Empty;
-        }
-        #endregion
-
-
-
-
-
         public async Task<Conversation> ReturnConversationAsync(string userId, string recipient)
         {
             var conversationId = "";
@@ -223,9 +199,9 @@ namespace FavourApp.Services
             {
                 conversationId = await CreateConversationAsync(userId, recipient);
             }
-
             Conversation conversation = await GetConversationAsync(conversationId);
             return conversation;
         }
+        #endregion
     }
 }

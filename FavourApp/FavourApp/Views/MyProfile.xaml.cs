@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using FavourApp.Helpers;
 using Xamarin.Forms.Xaml;
+using FavourApp.Services;
 
 namespace FavourApp
 {
@@ -22,6 +23,7 @@ namespace FavourApp
         #region Login 
         protected async override void OnAppearing()
         {
+            #region FacebookLogin
             var accessToken = Settings.AccessToken;
             if (accessToken != "")
             {
@@ -47,7 +49,7 @@ namespace FavourApp
                 webView.Navigated += WebViewOnNavigated;
                 Content = webView;
             }
-
+            #endregion
             base.OnAppearing();
         }
 
@@ -60,6 +62,26 @@ namespace FavourApp
                 await vm.SetFacebookUserProfileAsync(accessToken);
                 facebookProfile = vm.FacebookProfile;
                 Settings.FacebookId = facebookProfile.Id;
+                string[] arr = new string[] { };
+
+                User user = new User
+                {
+                    Facebookid = facebookProfile.Id,
+                    Fname = facebookProfile.FirstName,
+                    Lname = facebookProfile.LastName,
+                    Imgurl = facebookProfile.Picture.Data.Url,
+                    Description = string.Empty,
+                    Range = 0,
+                  
+                    Zipcode = string.Empty
+                };
+                var favorService = new FavorService();
+                bool check =  await favorService.CheckUserAsync(facebookProfile.Id);
+                if (check == true)
+                {
+                    favorService.CreateUserAsync(user);
+                }
+
                 Content = MainStackLayout;
             }
         }

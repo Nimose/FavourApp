@@ -16,7 +16,7 @@ namespace FavourApp
         {
 
             var favorService = new FavorService();
-            ProfileList.ItemsSource = await favorService.GetUsersWithServicesAsync();
+            ProfileList.ItemsSource = await favorService.GetUsersAsync();
             base.OnAppearing();
         }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)
