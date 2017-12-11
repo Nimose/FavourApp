@@ -103,30 +103,29 @@ namespace FavourApp.Services
         #region Conversation and messages    
         public async Task<List<Conversation>> GetConversationsAsync(string userId)
         {
-
             var requestUrl = Url + "conversation/user/" + userId + ApiKey;
             HttpClient _client = new HttpClient();
             var conversationsJson = await _client.GetStringAsync(requestUrl);
             var conversations = JsonConvert.DeserializeObject<List<Conversation>>(conversationsJson);
             return conversations;
-
         }
 
         public async Task<Conversation> GetConversationAsync(string conversationId)
         {
-            var reguestUrl = Url + "conversation/" + conversationId + ApiKey;
+            var correctId = CleanId(conversationId);
+            var reguestUrl = Url + "conversation/" + correctId + ApiKey;
             HttpClient _client = new HttpClient();
             var conversationJson = await _client.GetStringAsync(reguestUrl);
             var conversation = JsonConvert.DeserializeObject<Conversation>(conversationJson);
             return conversation;
         }
 
-        public async Task<string> CreateConversationAsync(string userIdOne, string userIdTwo)
+        public async Task<string> CreateConversationAsync(string userIdOne, string recipient)
         {
-            string[] userIds = new string[] { userIdOne, userIdTwo };
+            string[] userIds = new string[] { userIdOne, recipient };
             Rootobject list = new Rootobject
             {
-                user = userIds
+                User = userIds
             };
             var postUrl = Url + "conversation" + ApiKey;
             HttpClient _client = new HttpClient();
@@ -142,7 +141,8 @@ namespace FavourApp.Services
 
         public class Rootobject
         {
-            public string[] user { get; set; }
+            [JsonProperty("user")]
+            public string[] User { get; set; }
         }
 
 
@@ -162,21 +162,9 @@ namespace FavourApp.Services
             var messages = JsonConvert.DeserializeObject<List<Models.Message>>(messagesJson);
             return messages;
         }
-        #endregion
-
-        #region Check methods
-        public async Task<Boolean> CheckUserAsync(string facebookId)
-        {
-            User user = await GetUserAsync(facebookId);
-            if (user == null)
-            {
-                return true;
-            }
-            return false;
-        }
         public async Task<Conversation> ReturnConversationAsync(string userId, string recipient)
         {
-            var conversationId = "";
+            string conversationId = string.Empty;
             List<Conversation> conversations = await GetConversationsAsync(userId);
             if (conversations.Count > 0)
             {
@@ -202,6 +190,27 @@ namespace FavourApp.Services
             Conversation conversation = await GetConversationAsync(conversationId);
             return conversation;
         }
+
+
+        public string CleanId(string conversationId)
+        {
+            var correctId = conversationId.Replace(@"\", string.Empty).Replace("\"", string.Empty);
+            return correctId;
+        }
+    
+        #endregion
+
+        #region Check methods
+        public async Task<Boolean> CheckUserAsync(string facebookId)
+        {
+            User user = await GetUserAsync(facebookId);
+            if (user == null)
+            {
+                return true;
+            }
+            return false;
+        }
+    
         #endregion
     }
 }

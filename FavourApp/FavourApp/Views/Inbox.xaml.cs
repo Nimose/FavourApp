@@ -13,7 +13,7 @@ namespace FavourApp.Views
     {
         //FacebookProfile facebookProfile;
         //private string ClientId = "930931753728262";
-        string userId = Settings.FacebookId;
+        
         public Inbox()
         {                 
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace FavourApp.Views
                 await Navigation.PushAsync(new MyProfile());
             }
             var favorService = new FavorService();
-            ConversationsList.ItemsSource = await favorService.GetConversationsAsync(userId);
+            ConversationsList.ItemsSource = await favorService.GetConversationsAsync(Settings.FacebookId);
             base.OnAppearing();
         }
 

@@ -42,7 +42,6 @@
     <Compile Include="Helpers\WebViewCustom .cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="ViewModels\ConversationViewModel.cs" />
     <Compile Include="Views\Inbox.xaml.cs">
       <DependentUpon>Inbox.xaml</DependentUpon>
     </Compile>
@@ -71,10 +70,7 @@
     <Compile Include="Views\UserProfile.xaml.cs">
       <DependentUpon>UserProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\FacebookViewModel.cs" />
-    <Compile Include="ViewModels\ProfilesViewModel.cs" />
-    <Compile Include="ViewModels\ServicesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">

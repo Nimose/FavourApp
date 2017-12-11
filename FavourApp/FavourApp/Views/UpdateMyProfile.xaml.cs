@@ -1,6 +1,5 @@
 ﻿using FavourApp.Models;
 using FavourApp.Services;
-using FavourApp.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,8 +15,6 @@ namespace FavourApp
         FacebookProfile facebookProfile;
         public UpdateMyProfile(FacebookProfile facebookProfile)
         {
-            BindingContext = new CategoriesViewModel();
-
             this.facebookProfile = facebookProfile;
             InitializeComponent();
         }
@@ -36,10 +33,8 @@ namespace FavourApp
                     {
                         listItems.Add(item);
                     }
-                }
-             
+                }             
             }
-
             ImageUrl.Source = facebookProfile.Picture.Data.Url;
             FnameLabel.Text = facebookProfile.FirstName;
             LnameLabel.Text = facebookProfile.LastName;
@@ -92,16 +87,12 @@ namespace FavourApp
         private void ListServices_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var item = (e.Item as Service);
-            PriceService.Text = item.Price.ToString();
-            //PickerService.Items[PickerService.SelectedIndex] = item.CategoryName;
-
+            PriceService.Text = item.Price.ToString();          
         }
         public void OnDelete(object sender, ItemTappedEventArgs e)
         {
             var item = (sender as MenuItem).BindingContext as Service;
             listItems.Remove(item);
         }
-
-
     }
 }

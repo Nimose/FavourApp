@@ -35,7 +35,7 @@ namespace FavourApp
                 await Navigation.PushAsync(new MyProfile());
             }
             var favorService = new FavorService();
-            var conversation = await favorService.ReturnConversationAsync(User.Facebookid, Settings.FacebookId);
+            var conversation = await favorService.ReturnConversationAsync(Settings.FacebookId, User.Facebookid);
             await Navigation.PushAsync(new Message(User, conversation.Id));
         }
     }
