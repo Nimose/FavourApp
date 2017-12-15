@@ -1,36 +1,35 @@
-﻿using FavourApp.Models;
-using FavourApp.ViewModels;
-using System.Collections.ObjectModel;
+﻿using Favourpp.Models;
 using Xamarin.Forms;
-using FavourApp.Helpers;
+using Favourpp.Helpers;
 using Xamarin.Forms.Xaml;
-using FavourApp.Services;
+using Favourpp.Services;
 
-namespace FavourApp.Views
+namespace Favourpp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Inbox : ContentPage
     {
-        //FacebookProfile facebookProfile;
-        //private string ClientId = "930931753728262";
-        
+        string facebookId;
+        string accessToken;
         public Inbox()
-        {                 
+        {
+            facebookId = Settings.FacebookId;
+            accessToken = Settings.AccessToken;
             InitializeComponent();
-
-
         }
         protected override async void OnAppearing()
         {
-            if (Settings.FacebookId == "" & Settings.AccessToken == "")
+            if (facebookId== string.Empty & accessToken == string.Empty)
             {
-                await Navigation.PushAsync(new MyProfile());
+                await Navigation.PushAsync(new Login());
             }
-            var favorService = new FavorService();
-            ConversationsList.ItemsSource = await favorService.GetConversationsAsync(Settings.FacebookId);
-            base.OnAppearing();
+            else
+            {
+                var favorService = new FavorService();
+                ConversationsList.ItemsSource = await favorService.GetConversationsAsync(facebookId);
+                base.OnAppearing();
+            }
         }
-
         private async void ConversationsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var conversation = e.Item as Conversation;

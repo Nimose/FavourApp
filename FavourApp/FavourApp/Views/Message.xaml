@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FavourApp.Message">
+             x:Class="Favourpp.Message">
+    <!--Message stacklauout-->
     <StackLayout x:Name="MessageStackLayout" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
+        <!--List of messages-->
         <ListView x:Name="ConversationList" 
                   VerticalOptions="FillAndExpand" 
                   HorizontalOptions="FillAndExpand">
@@ -16,25 +18,29 @@
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate></ListView>
+            </ListView.ItemTemplate>
+        </ListView>
 
-            <!--End buttons Stacklayout-->
+        <!--End buttons Stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="FillAndExpand"
                      BackgroundColor="#2196F3">
 
+            <!--Message text-->
             <Editor x:Name="MessageToSend" 
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="FillAndExpand" 
                     TextColor="Black" 
                     BackgroundColor="White"/>
 
+            <!--Send message button-->
             <Button x:Name="SendMessage"
                     Text="Send"
                     TextColor="White"
                     BackgroundColor="Transparent"
                     HorizontalOptions="End"
                     Clicked="SendMessage_Clicked"/>
+            
         </StackLayout>
     </StackLayout>
 </ContentPage>

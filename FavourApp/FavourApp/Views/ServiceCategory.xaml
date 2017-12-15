@@ -1,48 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage             
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FavourApp.Views.ServiceCategory">
-    
+             x:Class="Favourpp.Views.ServiceCategory">
+    <!--Main stacklayout-->
     <StackLayout>
         <!--Category Stacklayout-->
         <StackLayout>
+            <!--Buttons-->
             <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40">
-                    <!--color on icons: rgba 0,0,0,25-->
+
+
                     <Button x:Name="Children"
                             Clicked="Children_Clicked"
-                        Image="children.png"
-                        BackgroundColor="Transparent"
-                            BorderColor="White"
-                           BorderRadius="0"
-                            BorderWidth="0"/>
+                            Image="children.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Garden"
                             Clicked="Garden_Clicked"
-                        Image="garden.png"
-                        BackgroundColor="Transparent"/>
+                            Image="garden.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Shopping"
                             Clicked="Shopping_Clicked"
-                        Image="shopping.png"
-                        BackgroundColor="Transparent"/>
+                            Image="shopping.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Travel"
                             Clicked="Travel_Clicked"
                             Image="travel.png"
                             BackgroundColor="Transparent"/>
+
                 </StackLayout>
             </ScrollView>
             <BoxView BackgroundColor="#bfbfbf" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
-
         <!--List profiles Stacklayout-->
-        <StackLayout HorizontalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="CenterAndExpand" >
+            <!--Profilelist-->
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
-                      ItemTapped="ProfileList_ItemTapped" 
-                      >
+                      ItemTapped="ProfileList_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -53,32 +51,35 @@
                                     <Label Text="{Binding Fname}"/>
                                     <Label Text="{Binding Lname}"/>
                                 </StackLayout>
-                                <Label Text="{Binding Description}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-
         <!--End buttons Stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="FillAndExpand"
                      HeightRequest="55"
                      BackgroundColor="#2196F3">
-            <Button x:Name="Home"
-                    Clicked="Home_Clicked"
-                    Image="home.png"
-                    BackgroundColor="Transparent"/>
-           
-            <Button x:Name="Inbox"
-                    Image="inbox.png" 
-                    BackgroundColor="Transparent"/>
-            <Button x:Name="Profile"
-                    Clicked="Profile_Clicked"
-                    Image="profile.png" 
-                    BackgroundColor="Transparent"/>
+            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button x:Name="Home"
+                        Clicked="Home_Clicked"
+                        Image="home.png"
+                        BackgroundColor="Transparent"/>
+
+                <Button x:Name="Inbox"
+                        Clicked="Inbox_Clicked"
+                        Image="inbox.png" 
+                        BackgroundColor="Transparent"/>
+
+                <Button x:Name="Profile"
+                        Clicked="Profile_Clicked"
+                        Image="profile.png" 
+                        BackgroundColor="Transparent"/>
+
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ContentPage>

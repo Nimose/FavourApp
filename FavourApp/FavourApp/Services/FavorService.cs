@@ -1,14 +1,12 @@
-﻿using FavourApp.Models;
+﻿using Favourpp.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using System;
-using FavourApp.Helpers;
-using System.Collections;
 
-namespace FavourApp.Services
+namespace Favourpp.Services
 {
     public class FavorService
     {
@@ -109,7 +107,6 @@ namespace FavourApp.Services
             var conversations = JsonConvert.DeserializeObject<List<Conversation>>(conversationsJson);
             return conversations;
         }
-
         public async Task<Conversation> GetConversationAsync(string conversationId)
         {
             var correctId = CleanId(conversationId);
@@ -119,7 +116,6 @@ namespace FavourApp.Services
             var conversation = JsonConvert.DeserializeObject<Conversation>(conversationJson);
             return conversation;
         }
-
         public async Task<string> CreateConversationAsync(string userIdOne, string recipient)
         {
             string[] userIds = new string[] { userIdOne, recipient };
@@ -138,14 +134,11 @@ namespace FavourApp.Services
             };
             return (string)responseContent;
         }
-
         public class Rootobject
         {
             [JsonProperty("user")]
             public string[] User { get; set; }
         }
-
-
         public async void SendMessageAsync(Models.Message message)
         {
             var postUrl = Url + "conversation/message" + ApiKey;
@@ -153,7 +146,6 @@ namespace FavourApp.Services
             var messageJson = JsonConvert.SerializeObject(message);
             await _client.PostAsync(postUrl, new StringContent(messageJson, Encoding.UTF8, "application/json"));
         }
-
         public async Task<List<Models.Message>> GetMessagesAsync(string conversationId)
         {
             var requestUrl = Url + "conversation/message/" + conversationId + ApiKey;
@@ -189,18 +181,10 @@ namespace FavourApp.Services
             }
             Conversation conversation = await GetConversationAsync(conversationId);
             return conversation;
-        }
-
-
-        public string CleanId(string conversationId)
-        {
-            var correctId = conversationId.Replace(@"\", string.Empty).Replace("\"", string.Empty);
-            return correctId;
-        }
-    
+        }         
         #endregion
 
-        #region Check methods
+        #region Helper methods
         public async Task<Boolean> CheckUserAsync(string facebookId)
         {
             User user = await GetUserAsync(facebookId);
@@ -210,7 +194,12 @@ namespace FavourApp.Services
             }
             return false;
         }
-    
+
+        public string CleanId(string conversationId)
+        {
+            var correctId = conversationId.Replace(@"\", string.Empty).Replace("\"", string.Empty);
+            return correctId;
+        }
         #endregion
     }
 }

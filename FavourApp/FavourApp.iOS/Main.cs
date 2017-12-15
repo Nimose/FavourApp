@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace FavourApp.iOS
+namespace Favourpp.iOS
 {
     public class Application
     {

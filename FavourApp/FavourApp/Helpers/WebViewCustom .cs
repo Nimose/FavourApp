@@ -1,10 +1,7 @@
 ﻿using Xamarin.Forms;
-
-namespace FavourApp.Helpers
+namespace Favourpp.Helpers
 {
     public class WebViewCustom : WebView
     {
-
-
     }
 }

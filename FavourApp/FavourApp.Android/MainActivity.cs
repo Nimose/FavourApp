@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -8,8 +7,8 @@ using Android.Widget;
 using Android.OS;
 using System.Net;
 using Xamarin.Forms;
-
-namespace FavourApp.Droid
+using FavourApp.Droid;
+namespace Favourpp.Droid
 {
     [Activity(Label = "FavourApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

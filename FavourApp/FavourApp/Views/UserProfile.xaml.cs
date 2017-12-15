@@ -1,33 +1,32 @@
-﻿using FavourApp.Models;
-using FavourApp.Services;
+﻿using Favourpp.Models;
+using Favourpp.Services;
 using System;
 using Xamarin.Forms;
-using FavourApp.Helpers;
-namespace FavourApp
+using Favourpp.Helpers;
+using Xamarin.Forms.Xaml;
+
+namespace Favourpp
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserProfile : ContentPage
     {
-        User User;
-
-        public string fbid = "";
-        public UserProfile(string facebookId)
+        User user;
+        string facebookId;
+        public UserProfile(User user)
         {
-            this.fbid = facebookId;
+            Title = user.Fname + " " + user.Lname;
+            this.user = user;
+            this.facebookId = Settings.FacebookId;
             InitializeComponent();
         }
-
-        protected override async void OnAppearing()
-        {
-            var favorService = new FavorService();
-            var user = await favorService.GetUserAsync(fbid);
-            this.User = user;
+        protected override void OnAppearing()
+        {    
             UserFname.Text = user.Fname;
             UserLname.Text = user.Lname;
             UserImage.Source = user.Imgurl;
             ServiceList.ItemsSource = user.Services;
             UserDescription.Text = user.Description;
         }
-
         async void Message_Clicked(object sender, EventArgs e)
         {
             if (Settings.FacebookId == "" & Settings.AccessToken == "")
@@ -35,8 +34,8 @@ namespace FavourApp
                 await Navigation.PushAsync(new MyProfile());
             }
             var favorService = new FavorService();
-            var conversation = await favorService.ReturnConversationAsync(Settings.FacebookId, User.Facebookid);
-            await Navigation.PushAsync(new Message(User, conversation.Id));
+            var conversation = await favorService.ReturnConversationAsync(facebookId, user.Facebookid);
+            await Navigation.PushAsync(new Message(user, conversation.Id));
         }
     }
 }

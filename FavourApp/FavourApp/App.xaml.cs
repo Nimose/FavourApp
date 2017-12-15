@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace FavourApp
+namespace Favourpp
 {
     public partial class App : Application
     {

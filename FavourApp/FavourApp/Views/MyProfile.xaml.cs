@@ -1,109 +1,53 @@
-﻿using FavourApp.Models;
-using FavourApp.ViewModels;
+﻿using Favourpp.Models;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using FavourApp.Helpers;
+using Favourpp.Helpers;
 using Xamarin.Forms.Xaml;
-using FavourApp.Services;
-
-namespace FavourApp
+using Favourpp.Services;
+namespace Favourpp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyProfile : ContentPage
     {
         ObservableCollection<Service> listItems = new ObservableCollection<Service>();
-        FacebookProfile facebookProfile;
-        private string ClientId = "930931753728262";
+        User user;
+        string facebookId;
+        string accessToken;
 
         public MyProfile()
-        {
+        {           
+            facebookId = Settings.FacebookId;
+            accessToken =   Settings.AccessToken;
             InitializeComponent();
         }
 
-        #region Login 
         protected async override void OnAppearing()
         {
-            #region FacebookLogin
-            var accessToken = Settings.AccessToken;
-            if (accessToken != "")
+            if (facebookId == string.Empty & accessToken == string.Empty)
             {
-                var vm = BindingContext as FacebookViewModel;
-                await vm.SetFacebookUserProfileAsync(accessToken);
-                facebookProfile = vm.FacebookProfile;
-                Content = MainStackLayout;
+                await Navigation.PushAsync(new Login());
             }
             else
             {
-                var apiRequest =
-                "https://www.facebook.com/dialog/oauth?client_id="
-                + ClientId
-                + "&display=popup"
-                + "&response_type=token"
-                + "&redirect_uri=https://www.facebook.com/connect/login_success.html";
-
-                var webView = new WebViewCustom()
-                {
-                    Source = apiRequest,
-                    HeightRequest = 1,
-                };
-                webView.Navigated += WebViewOnNavigated;
-                Content = webView;
-            }
-            #endregion
-            base.OnAppearing();
-        }
-
-        private async void WebViewOnNavigated(object sender, WebNavigatedEventArgs e)
-        {
-            var accessToken = ExtractAccessTokenFromUrl(e.Url);
-            if (accessToken != "")
-            {
-                var vm = BindingContext as FacebookViewModel;
-                await vm.SetFacebookUserProfileAsync(accessToken);
-                facebookProfile = vm.FacebookProfile;
-                Settings.FacebookId = facebookProfile.Id;
-                string[] arr = new string[] { };
-
-                User user = new User
-                {
-                    Facebookid = facebookProfile.Id,
-                    Fname = facebookProfile.FirstName,
-                    Lname = facebookProfile.LastName,
-                    Imgurl = facebookProfile.Picture.Data.Url,
-                    Description = string.Empty,
-                    Range = 0,
-
-                    Zipcode = string.Empty
-                };
-
                 var favorService = new FavorService();
-                bool check = await favorService.CheckUserAsync(facebookProfile.Id);
-                if (check == true)
+                var user = await favorService.GetUserAsync(facebookId);
+                this.user = user;               
+                UserFname.Text = user.Fname;
+                UserLname.Text = user.Lname;
+                UserImage.Source = user.Imgurl;
+                if (user.Services.Length > 0)
                 {
-
-                    favorService.CreateUserAsync(user);
+                    ServiceList.ItemsSource = user.Services;
                 }
-
-                Content = MainStackLayout;
+                UserDescription.Text = user.Description;
+                Title = user.Fname + " " + user.Lname;
             }
-        }
 
-        private string ExtractAccessTokenFromUrl(string url)
-        {
-            if (url.Contains("access_token") && url.Contains("&expires_in="))
-            {
-                var at = url.Replace("https://www.facebook.com/connect/login_success.html#access_token=", "");
-                var accessToken = at.Remove(at.IndexOf("&expires_in="));
-                Settings.AccessToken = accessToken;
-                return accessToken;
-            }
-            return string.Empty;
         }
-        #endregion
 
         async void UpdateUser_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushModalAsync(new UpdateMyProfile(facebookProfile));
+            await Navigation.PushModalAsync(new UpdateMyProfile(user));
         }
 
         private async void Logout_Clicked(object sender, System.EventArgs e)

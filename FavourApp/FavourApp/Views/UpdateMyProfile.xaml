@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FavourApp.UpdateMyProfile">
-
+             x:Class="Favourpp.UpdateMyProfile">
+    <!--Main stacklayout-->
     <StackLayout>
-        <Image x:Name="ImageUrl" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
-        <Label x:Name="FnameLabel" Text=""/>
-        <Label x:Name="LnameLabel" Text=""/>
 
-        <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric"/>
-        <Entry x:Name="Description" Placeholder="Description"/>
-        <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
-
-        <!--Services to list-->
+        <!--New info entry boxes-->
+        <StackLayout>
+            <Image x:Name="ImageUrl" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
+            <Label x:Name="FnameLabel" Text=""/>
+            <Label x:Name="LnameLabel" Text=""/>
+            <Entry x:Name="Zip" Placeholder="ZipCode" Keyboard="Numeric"/>
+            <Entry x:Name="Description" Placeholder="Description"/>
+            <Entry x:Name="Range" Placeholder="Range" Keyboard="Numeric"/>
+        </StackLayout>
+        
+        <!-- Adding Services to list-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="FillAndExpand">
@@ -51,10 +54,12 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!--End stacklayout-->
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="FillAndExpand"
                      BackgroundColor="#2196F3">
+            <!--Update button-->
             <Button x:Name="Update"
                     Clicked="Update_Clicked" 
                     Text="Opdater"
@@ -62,6 +67,8 @@
                     FontAttributes="Bold"
                     FontSize="Medium"                    
                     BackgroundColor="Transparent"/>
+
+            <!--Cancle button-->
             <Button x:Name="Cancel" 
                     Clicked="Cancel_Clicked" 
                     Text="Annuller"
@@ -70,5 +77,6 @@
                     FontSize="Medium"
                     BackgroundColor="Transparent"/>
         </StackLayout>
+
     </StackLayout>
 </ContentPage>

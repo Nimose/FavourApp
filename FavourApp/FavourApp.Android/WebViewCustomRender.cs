@@ -1,12 +1,12 @@
 ﻿
 using Android.Webkit;
-using FavourApp.Droid;
-using FavourApp.Helpers;
+using Favourpp.Droid;
+using Favourpp.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(WebViewCustom), typeof(WebViewCustomRender))]
-namespace FavourApp.Droid
+namespace Favourpp.Droid
 {
     public class WebViewCustomRender : WebViewRenderer
     {

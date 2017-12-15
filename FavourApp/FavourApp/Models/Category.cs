@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-
-namespace FavourApp.Models
+namespace Favourpp.Models
 {
     public class Category
     {
@@ -8,6 +7,5 @@ namespace FavourApp.Models
         public string Id { get; set; }
         [JsonProperty("name")]    
         public string Name { get; set; }
-
     }
 }

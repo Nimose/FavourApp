@@ -1,39 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
-             Title="FavorApp"
+<ContentPage Title="FavorApp"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FavourApp"
-             x:Class="FavourApp.MainPage">
-
+             xmlns:local="clr-namespace:Favourpp"
+             x:Class="Favourpp.MainPage">
+    <!--Main stacklayout-->
     <StackLayout>
         <!--Category Stacklayout-->
         <StackLayout>
             <ScrollView Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="40">
-                    <!--color on icons: rgba 0,0,0,25-->
+                  
+                    <!--Buttons-->
                     <Button x:Name="Children"
                             Clicked="Children_Clicked"
-                        Image="children.png"
-                        BackgroundColor="Transparent"
-                            BorderColor="White"
-                           BorderRadius="0"
-                            BorderWidth="0"/>
+                            Image="children.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Garden"
                             Clicked="Garden_Clicked"
-                        Image="garden.png"
-                        BackgroundColor="Transparent"/>
+                            Image="garden.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Shopping"
                             Clicked="Shopping_Clicked"
-                        Image="shopping.png"
-                        BackgroundColor="Transparent"/>
+                            Image="shopping.png"
+                            BackgroundColor="Transparent"/>
 
                     <Button x:Name="Travel"
                             Clicked="Travel_Clicked"
                             Image="travel.png"
                             BackgroundColor="Transparent"/>
+                    
                 </StackLayout>
             </ScrollView>
             <BoxView BackgroundColor="#bfbfbf" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
@@ -41,10 +39,10 @@
 
         <!--List profiles Stacklayout-->
         <StackLayout HorizontalOptions="CenterAndExpand" >
+           <!--Profilelist-->
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
-                      ItemTapped="ProfileList_ItemTapped" 
-                      >
+                      ItemTapped="ProfileList_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -56,8 +54,6 @@
                                     <Label Text="{Binding Lname}"/>
                                 </StackLayout>
                             </StackLayout>
-
-
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -70,21 +66,24 @@
                      HorizontalOptions="FillAndExpand"
                      HeightRequest="55"
                      BackgroundColor="#2196F3">
-            <StackLayout  Orientation="Horizontal"
-                          HorizontalOptions="CenterAndExpand">
+            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button x:Name="Home"
                         Clicked="Home_Clicked"
-                    Image="home.png"
-                    BackgroundColor="Transparent"/>
+                        Image="home.png"
+                        BackgroundColor="Transparent"/>
+                
                 <Button x:Name="Inbox"
                         Clicked="Inbox_Clicked"
-                    Image="inbox.png" 
-                    BackgroundColor="Transparent"/>
+                        Image="inbox.png" 
+                        BackgroundColor="Transparent"/>
+                
                 <Button x:Name="Profile"
-                    Clicked="Profile_Clicked"
-                    Image="profile.png" 
-                    BackgroundColor="Transparent"/>
+                        Clicked="Profile_Clicked"
+                        Image="profile.png" 
+                        BackgroundColor="Transparent"/>
+                
             </StackLayout>
         </StackLayout>
+        
     </StackLayout>
 </ContentPage>

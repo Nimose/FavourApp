@@ -1,55 +1,55 @@
-﻿using FavourApp.Models;
+﻿using Favourpp.Models;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FavourApp.Helpers;
-using FavourApp.Services;
+using Favourpp.Helpers;
+using Favourpp.Services;
 using System.Collections.ObjectModel;
-
-namespace FavourApp
+namespace Favourpp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Message : ContentPage
     {
-        User User;
-        string FacebookId;
-        string ConversationId;
+        User user;
+        string facebookId;
+        string accessToken;
+        string conversationId;
         ObservableCollection<Models.Message> conversationMessages = new ObservableCollection<Models.Message>();
         public Message(User user, string conversationId)
-        {
-            var correctId = conversationId.Replace(@"\", string.Empty).Replace("\"", string.Empty);
-
-            User = user;
-            ConversationId = correctId;
-            FacebookId = Settings.FacebookId;
-     
+        {           
+            this.user = user;
+            this.conversationId = conversationId;
+            facebookId = Settings.FacebookId;
+            accessToken = Settings.AccessToken;
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
-            if (Settings.FacebookId == "" & Settings.AccessToken == "")
+            if (facebookId == string.Empty & accessToken == string.Empty)
             {
-                await Navigation.PushAsync(new MyProfile());
+                await Navigation.PushAsync(new Login());
             }
-
-            var favorService = new FavorService();
-                var messages = await favorService.GetMessagesAsync(ConversationId);
-
+            else
+            {
+                var favorService = new FavorService();
+                var id = favorService.CleanId(conversationId);
+                var messages = await favorService.GetMessagesAsync(id);
                 foreach (var message in messages)
                 {
                     conversationMessages.Add(message);
                 }
                 ConversationList.ItemsSource = conversationMessages;
-                base.OnAppearing();                 
+                base.OnAppearing();
+            }
         }
 
         private void SendMessage_Clicked(object sender, EventArgs e)
         {
             var favorService = new FavorService();
-            var message = new FavourApp.Models.Message
+            var message = new Models.Message
             {
-                ConversationID = ConversationId,
-                UserId = Settings.FacebookId,
+                ConversationID = conversationId,
+                UserId = facebookId,
                 Timestamp = DateTime.Now,
                 ConversationMessage = MessageToSend.Text
             };

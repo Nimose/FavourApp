@@ -1,28 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:FavourApp" 
-             xmlns:viewModels="clr-namespace:FavourApp.ViewModels; assembly:FavorApp"
-             x:Class="FavourApp.MyProfile"
-             Title="Min Profil">
-
-    <ContentPage.BindingContext>
-        <viewModels:FacebookViewModel/>
-    </ContentPage.BindingContext>
-    <StackLayout x:Name="MainStackLayout">
-        <StackLayout>
-            <StackLayout Orientation = "Vertical" >
-                <Image x:Name="ImageUrl" Source = "{Binding FacebookProfile.Picture.Data.Url}" HeightRequest="150" WidthRequest="150" VerticalOptions="Start"/>
-                <Label x:Name="FacebookIdLabel" Text="{Binding FacebookProfile.Id}"/>
-                <Label x:Name="FnameLabel" Text="{Binding FacebookProfile.FirstName}"/>
-                <Label x:Name="LnameLabel" Text="{Binding FacebookProfile.LastName}"/>
-                <Label x:Name="ZipLabel" Text="{Binding User.Zip}"/>
-                <Label x:Name="DescriptionLabel" Text="{Binding User.Description}"/>
-                <Label x:Name="RangeLabel" Text="{Binding User.Range}"/>
-
-
-                <Button Text="Logout" x:Name="Logout" Clicked="Logout_Clicked"/>
+             xmlns:local="clr-namespace:Favourpp" 
+             x:Class="Favourpp.MyProfile">
+    <!--Main stacklayout-->
+    <StackLayout>
+        <!--Profile StackLayout-->
+        <StackLayout Orientation="Vertical" >
+            <!--Profile picture-->
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                <Image x:Name="UserImage" HeightRequest="150"/>
             </StackLayout>
+            <!--Firstname, lastname & description-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label x:Name="UserFname" FontAttributes="Bold" FontSize="Medium"/>
+                <Label x:Name="UserLname"  FontAttributes="Bold" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label x:Name="UserDescription" />
+            </StackLayout>
+
+            <!--Profile servicelist-->
+            <ListView x:Name="ServiceList">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <TextCell Text="{Binding Category}" Detail="{Binding Price}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
 
         <!--End buttons Stacklayout-->
@@ -30,6 +35,8 @@
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="FillAndExpand"
                      BackgroundColor="#2196F3">
+            
+            <!--Update user button-->
             <Button x:Name="UpdateUser" 
                     Clicked="UpdateUser_Clicked" 
                     Text="Opdater profil" 
@@ -37,8 +44,18 @@
                     FontAttributes="Bold"
                     FontSize="Medium"
                     BackgroundColor="Transparent" 
-                    HorizontalOptions="CenterAndExpand"/>
+                    HorizontalOptions="StartAndExpand"/>
+
+            <!--Logout button-->
+            <Button x:Name="LogOut" 
+                    Clicked="Logout_Clicked" 
+                    Text="Log ud" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent" 
+                    HorizontalOptions="EndAndExpand"/>
+            
         </StackLayout>
     </StackLayout>
-
 </ContentPage>

@@ -1,39 +1,33 @@
-﻿using FavourApp.Models;
-using FavourApp.Services;
+﻿using Favourpp.Models;
+using Favourpp.Services;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-namespace FavourApp.Views
+namespace Favourpp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ServiceCategory : ContentPage
     {
-        string catName;
+        string categoryName;
         public ServiceCategory(string categoryName)
         {
             Title = categoryName.ToUpper();
-            catName = categoryName;
+            this.categoryName = categoryName;
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
             var favorService = new FavorService();
-            ProfileList.ItemsSource = await favorService.GetUsersCategoryAsync(catName);
+            ProfileList.ItemsSource = await favorService.GetUsersCategoryAsync(categoryName);
             base.OnAppearing();
-        }
-
-        #region Buttons 
-        async void Profile_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new MyProfile());
         }
         async void ProfileList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var UserObj = (e.Item as User);
-            string facebookId = UserObj.Facebookid;
-            await Navigation.PushAsync(new UserProfile(facebookId));
+            var user = (e.Item as User);          
+            await Navigation.PushAsync(new UserProfile(user));
         }
+
+        #region Category buttons      
         async void Children_Clicked(object sender, EventArgs e)
         {
             string categoryName = "børnepasning";
@@ -55,9 +49,20 @@ namespace FavourApp.Views
             string categoryName = "transport";
             await Navigation.PushAsync(new ServiceCategory(categoryName));
         }
+        #endregion
+
+        #region Profile and home buttons
+        async void Profile_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MyProfile());
+        }
         async void Home_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopToRootAsync();
+        }
+        async void Inbox_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Inbox());
         }
         #endregion
     }
