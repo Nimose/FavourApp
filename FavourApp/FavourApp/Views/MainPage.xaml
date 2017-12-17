@@ -6,8 +6,11 @@
              x:Class="Favourpp.MainPage">
     <!--Main stacklayout-->
     <StackLayout>
+        
         <!--Category Stacklayout-->
         <StackLayout>
+            
+            <!--Category buttons-->
             <ScrollView Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="40">
                   
@@ -39,6 +42,7 @@
 
         <!--List profiles Stacklayout-->
         <StackLayout HorizontalOptions="CenterAndExpand" >
+            
            <!--Profilelist-->
             <ListView x:Name="ProfileList" 
                       HasUnevenRows="True" 
@@ -71,19 +75,18 @@
                         Clicked="Home_Clicked"
                         Image="home.png"
                         BackgroundColor="Transparent"/>
-                
+
                 <Button x:Name="Inbox"
                         Clicked="Inbox_Clicked"
                         Image="inbox.png" 
                         BackgroundColor="Transparent"/>
-                
+
                 <Button x:Name="Profile"
                         Clicked="Profile_Clicked"
                         Image="profile.png" 
                         BackgroundColor="Transparent"/>
-                
+
             </StackLayout>
         </StackLayout>
-        
     </StackLayout>
 </ContentPage>

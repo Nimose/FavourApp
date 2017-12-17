@@ -12,16 +12,7 @@ namespace Favourpp
     {
         public MainPage()
         {
-            try
-            {
-                InitializeComponent();
-
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
+                InitializeComponent();           
         }
         protected override async void OnAppearing()
         {

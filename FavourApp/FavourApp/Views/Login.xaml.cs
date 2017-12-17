@@ -49,7 +49,6 @@ namespace Favourpp
             {
                 var facebookServices = new FacebookServices();
                 var facebookProfile = await facebookServices.GetFacebookProfileAsync(accessToken);
-
                 Settings.FacebookId = facebookProfile.Id;
                 string[] arr = new string[] { };
 
